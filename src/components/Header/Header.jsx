@@ -18,7 +18,7 @@ const Header = () => {
         </Link>
 
         {hasRootOrListPath && (
-          <button className="Button Outlined-40" onClick={() => navigate("/list")}>
+          <button className="Button Outlined-40" onClick={() => navigate("/post")}>
             롤링 페이퍼 만들기
           </button>
         )}
