@@ -1,0 +1,57 @@
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        purple: {
+          100: "#f8f0ff",
+          200: "#ecd9ff",
+          300: "#dcb9ff",
+          400: "#c894fd",
+          500: "#ab57ff",
+          600: "#9935ff",
+          700: "#861dee",
+          800: "#6e0ad1",
+          900: "#5603a7",
+        },
+        beige: {
+          100: "#fff0d6",
+          200: "#ffe2ad",
+          300: "#ffc583",
+          400: "#ffae65",
+          500: "#ff8832",
+        },
+        blue: {
+          100: "#e2f5ff",
+          200: "#b1e4ff",
+          300: "#7cd2ff",
+          400: "#34b9ff",
+          500: "#00a2fe",
+        },
+        green: {
+          100: "#e4fbdc",
+          200: "#d0f5c3",
+          300: "#9be282",
+          400: "#60cf37",
+          500: "#2ba600",
+        },
+        grayscale: {
+          100: "#f6f6f6",
+          200: "#eeeeee",
+          300: "#cccccc",
+          400: "#999999",
+          500: "#555555",
+          600: "#4a4a4a",
+          700: "#3a3a3a",
+          800: "#2a2a2a",
+          900: "#181818",
+        },
+        white: "#ffffff",
+        black: "#000000",
+        error: "#dc3a3a",
+        surface: "#f6f8ff",
+      },
+    },
+  },
+  plugins: [],
+};
