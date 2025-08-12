@@ -10,7 +10,7 @@ const Header = () => {
   const hasRootOrListPath = paths.includes(pathname);
 
   return (
-    <header className="py-[11px] h-[65px]">
+    <header className="fixed left-0 right-0 top-0 py-[11px] h-[65px] border-b-1 border-[#EDEDED]">
       <nav className="flex justify-between h-[42px] my-container">
         <Link to="/" className="flex items-center gap-[8px] py-[6px]">
           <img src={icLogo} alt="header_logo" style={{ width: "28px", height: "28px" }} />
