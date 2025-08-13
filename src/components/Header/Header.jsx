@@ -7,7 +7,7 @@ const Header = () => {
 
   const paths = ["/", "/list"];
 
-  const hasRootOrListPath = paths.includes(pathname);
+  const isRootOrListPath = paths.includes(pathname);
 
   return (
     <header className="fixed left-0 right-0 top-0 py-[11px] h-[65px] border-b-1 border-[#EDEDED] z-99">
@@ -17,7 +17,7 @@ const Header = () => {
           <h1 className="font-poppins font-bold leading-[100%]">Rolling</h1>
         </Link>
 
-        {hasRootOrListPath && (
+        {isRootOrListPath && (
           <button className="Button Outlined-40" onClick={() => navigate("/post")}>
             롤링 페이퍼 만들기
           </button>
