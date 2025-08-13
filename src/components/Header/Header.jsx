@@ -10,10 +10,10 @@ const Header = () => {
   const isRootOrListPath = paths.includes(pathname);
 
   return (
-    <header className="fixed left-0 right-0 top-0 py-[11px] h-[65px] border-b-1 border-[#EDEDED] z-99">
+    <header className="fixed left-0 right-0 top-0 py-[11px] h-[65px] border-b border-[#EDEDED] z-99">
       <nav className="flex justify-between h-[42px] my-container">
         <Link to="/" className="flex items-center gap-[8px] py-[6px]">
-          <img src={icLogo} alt="header_logo" style={{ width: "28px", height: "28px" }} />
+          <img src={icLogo} alt="header_logo" className="w-[28px] h-[28px]" />
           <h1 className="font-poppins font-bold leading-[100%]">Rolling</h1>
         </Link>
 
