@@ -1,4 +1,4 @@
-import icLogo from "../../assets/icLogo.png";
+import icLogo from "../../assets/icLogo.svg";
 import { Link, useLocation, useNavigate } from "react-router";
 
 const Header = () => {
