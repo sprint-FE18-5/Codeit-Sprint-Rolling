@@ -1,19 +1,11 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
-import { Dropdown, DropdownButton, DropdownList, DropdownItem } from "./components/Dropdown";
-
+import DropdownTest from "./components/Dropdown/Test";
 function App() {
   return (
     <>
-      <Dropdown>
-        <DropdownButton />
-        <DropdownList>
-          <DropdownItem />
-          <DropdownItem />
-        </DropdownList>
-      </Dropdown>
-
+      <DropdownTest />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={/* 메인페이지 */ null} />
