@@ -11,7 +11,7 @@ const DropdownTest = () => {
       {/* 기본 버튼 기능 */}
       <Dropdown type="default">
         <DropdownButton
-          type="base"
+          type="default"
           label="(😀 23) (😃 52) (😄 3)"
           icon={/*아이콘 컴포넌트*/ null}
           icLabel="이모지 더보기"
