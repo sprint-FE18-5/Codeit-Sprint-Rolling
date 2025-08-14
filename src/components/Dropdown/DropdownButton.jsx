@@ -22,13 +22,12 @@ const DropdownButton = ({
   type = "base",
   errorMessage = "",
 }) => {
-  const baseClasses = "flex w-auto min-h-9 items-center gap-x-1.5 duration-200";
+  const baseClasses = "flex w-auto min-h-9 items-center gap-x-1.5 cursor-pointer duration-200";
 
   // 베이스 버튼(기능적 버튼)
   const baseButtonClass = `
     ${baseClasses}justify-center text-gray-900
     hover:text-gray-700
-    focus:outline-2 focus:outline-gray-600 focus:outline-offset-[-2px]
     disabled:text-gray-400 disabled:cursor-not-allowed
   `;
 
