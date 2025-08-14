@@ -9,8 +9,8 @@ import {
  * Dropdown Wrapper 컴포넌트
  * Headless UI 라이브러리 Menu 커스텀하여 상태 관리
  * @param {object} props
- * @param {React.ReactNode} props.button - 드롭다운을 열기 위한 버튼 컴포넌트
- * @param {React.ReactNode} props.children - 드롭다운 내부 리스트 요소
+ * @param {React.ReactNode} props.button - DropdownButton 컴포넌트
+ * @param {React.ReactNode} props.children - DropdownList 컴포넌트
  * @param {string} className - Tailwind 추가 클래스
  * @param {string} type - Dropdown Wrapper 타입(base, default, select)
  */

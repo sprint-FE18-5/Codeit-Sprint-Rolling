@@ -14,6 +14,29 @@ import { MenuButton } from "@headlessui/react";
  * @remarks 에러 메시지 추가와 UI 관련 코드는 차후 진행 예정입니다.(메시지 컴포넌트를 추가하여 병합할 예정)
  */
 
+/* 임시 화살표 컴포넌트 */
+/* 닫힘 상태 화살표 */
+export const ArrowDownIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+    <path
+      fillRule="evenodd"
+      d="M10 12a1 1 0 01-.707-.293l-3-3a1 1 0 011.414-1.414L10 9.586l2.293-2.293a1 1 0 111.414 1.414l-3 3A1 1 0 0110 12z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
+
+/* 열림 상태 화살표 */
+export const ArrowUpIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+    <path
+      fillRule="evenodd"
+      d="M10 8a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 10.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 8z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
+
 const typeClasses = {
   base: "flex w-auto items-center gap-x-0.5 cursor-pointer duration-100",
   default: "justify-center text-gray-900 hover:text-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed",
@@ -32,24 +55,31 @@ const DropdownButton = ({
   errorMessage = "",
 }) => {
   return (
-    <>
-      <MenuButton
-        className={`${typeClasses.base} ${type !== "base" ? typeClasses[type] || "" : ""} ${className}`}
-        disabled={disabled}
-        onClick={onClick}
-        aria-label={icLabel}
-      >
-        {label && <span>{label}</span>}
-        {label && icon && (
-          <span className="w-5 h-5" aria-label={icLabel || "icon"}>
-            {icon}
-          </span>
-        )}
-      </MenuButton>
-      {errorMessage && type === "select" && (
-        <span className="mt-1 text-[12px] leading-[18px] tracking-[-0.5%] text-red-600 block">{errorMessage}</span>
+    <MenuButton
+      className={`${typeClasses.base} ${type !== "base" ? typeClasses[type] || "" : ""} ${className}`}
+      disabled={disabled}
+      onClick={onClick}
+      aria-label={icLabel}
+    >
+      {({ open }) => (
+        <>
+          {label && <span>{label}</span>}
+
+          {/* icon prop이 화살표 컴포넌트일 때 open 상태에 따라 변경 */}
+          {icon &&
+            (icon.type === ArrowDownIcon || icon.type === ArrowUpIcon ? (
+              <span className="ml-0.5">{open ? <ArrowUpIcon /> : <ArrowDownIcon />}</span>
+            ) : (
+              <span className="w-5 h-5 ml-0.5">{icon}</span>
+            ))}
+
+          {/* label과 icon이 있고, icon이 화살표가 아니면 그냥 렌더 */}
+          {!label && icon && !(icon.type === ArrowDownIcon || icon.type === ArrowUpIcon) && (
+            <span className="w-5 h-5">{icon}</span>
+          )}
+        </>
       )}
-    </>
+    </MenuButton>
   );
 };
 
