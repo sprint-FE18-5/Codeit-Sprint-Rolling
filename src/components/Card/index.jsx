@@ -1,4 +1,3 @@
-import React from "react";
 // import Badge from "./Badge/Badge";
 // import CircleButton from "./Button/Button";
 
@@ -22,44 +21,55 @@ const CircleButton = ({ onClick }) => (
 );
 
 // Card 컴포넌트
-const Card = ({ profileImg, name, badgeText, badgeColor, message = "", date = "", onDelete, onClick }) => (
-  <div
-    className="bg-white rounded-2xl shadow-sm p-6 card-size flex flex-col gap-4 relative cursor-pointer transition-all"
-    onClick={onClick} // 모달을 위한 클릭 핸들러
-  >
-    <div className="flex items-center gap-3">
-      <img src={profileImg} alt={name} className="w-14 h-14 rounded-full object-cover border border-gray-200" />
-      <div>
+const Card = ({ profileImg, name, badgeText, badgeColor, message = "", date = "", onDelete, onClick, cardID }) => {
+  // 삭제 버튼 핸들러
+  const handleClickDelete = e => {
+    e.stopPropagation();
+    if (onDelete) {
+      onDelete(cardID);
+    }
+  };
+
+  return (
+    <div
+      className="bg-white rounded-2xl shadow-sm p-6 card-size flex flex-col gap-4 relative cursor-pointer transition-all"
+      onClick={onClick} // 모달을 위한 핸들러
+    >
+      <div className="flex items-center gap-3">
+        <img src={profileImg} alt={name} className="w-14 h-14 rounded-full object-cover border border-gray-200" />
         <div>
-          <span className="md:text-[20px] text-[18px] font-normal">From.</span>
-          <span className="md:text-[20px] text-[16px] font-bold ml-1">{name}</span>
+          <div>
+            <span className="md:text-[20px] text-[18px] font-normal">From.</span>
+            <span className="md:text-[20px] text-[16px] font-bold ml-1">{name}</span>
+          </div>
+          <Badge text={badgeText} badgeColor={badgeColor} />
         </div>
-        <Badge text={badgeText} badgeColor={badgeColor} />
+        {onDelete && (
+          <button
+            onClick={handleClickDelete}
+            className="absolute top-6 right-6 bg-white border border-gray-200 flex items-center justify-center w-10 h-10 rounded-lg cursor-pointer"
+            aria-label="삭제"
+            type="button"
+          >
+            <img src={icDelete} alt="삭제" className="w-[16px] h-[16px]" />
+          </button>
+        )}
       </div>
-      {onDelete && (
-        <button
-          onClick={e => {
-            e.stopPropagation();
-            onDelete();
-          }}
-          className="absolute top-6 right-6 bg-white border border-gray-200 flex items-center justify-center w-10 h-10 rounded-lg cursor-pointer"
-          aria-label="삭제"
-          type="button"
-        >
-          <img src={icDelete} alt="삭제" className="w-[16px] h-[16px]" />
-        </button>
-      )}
+      <div className="md:text-[18px] text-[15px] text-gray-700 pt-2 border-t border-gray-200 line-clamp-3">
+        {message}
+      </div>
+      <div className="text-xs text-gray-400 mt-auto">{date}</div>
     </div>
-    <div className="md:text-[18px] text-[15px] text-gray-700 pt-2 border-t border-gray-200 line-clamp-3">{message}</div>
-    <div className="text-xs text-gray-400 mt-auto">{date}</div>
-  </div>
-);
+  );
+};
 
 // +카드 컴포넌트
-const AddCard = ({ onClick }) => (
-  <div className="bg-white rounded-2xl shadow-sm card-size flex items-center justify-center transition-all">
-    <CircleButton onClick={onClick} />
-  </div>
-);
+const AddCard = ({ onClick }) => {
+  return (
+    <div className="bg-white rounded-2xl shadow-sm card-size flex items-center justify-center transition-all">
+      <CircleButton onClick={onClick} />
+    </div>
+  );
+};
 
 export { Card, Badge, CircleButton, AddCard };
