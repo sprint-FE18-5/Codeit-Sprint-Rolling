@@ -22,16 +22,11 @@ const DropdownButton = ({
   type = "base",
   errorMessage = "",
 }) => {
-  const baseClasses = "flex w-auto h-8 md:h-9 bg-black items-center gap-x-1.5 cursor-pointer duration-200";
+  const baseClasses = "flex w-auto items-center gap-x-1.5 cursor-pointer duration-200";
 
   // 베이스 버튼(기능적 버튼)
   const baseButtonClass = `
     ${baseClasses}justify-center text-gray-900 hover:text-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed
-  `;
-
-  // 일반 버튼 UI
-  const defaultButtonClass = `
-    ${baseClasses} border border-gray-300 rounded-md bg-white text-gray-900 hover:border-gray-500 focus:outline-2 focus:outline-gray-600 focus:outline-offset-[-2px] disabled:bg-gray-100 disabled:border-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed
   `;
 
   // 셀렉트박스 스타일 버튼
@@ -42,7 +37,6 @@ const DropdownButton = ({
   // type에 따른 클래스 매핑
   const typeClasses = {
     base: baseButtonClass,
-    default: defaultButtonClass,
     select: `${selectButtonClass} ${errorMessage ? "border-red-600 text-gray-900 hover:border-red-600" : ""}`,
   };
 
