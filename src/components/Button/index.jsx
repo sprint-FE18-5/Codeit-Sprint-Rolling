@@ -33,7 +33,7 @@ const BASE_VARIANTS = {
 };
 
 // outlined 공통
-const COMON_OUTLINED = [
+const COMMON_OUTLINED = [
   BASE_VARIANTS.outlined,
   STATE_DISABLED,
   STATE_HOVER.outlined,
@@ -53,8 +53,8 @@ const VARIANTS = {
     STATE_ACTIVE.secondary,
     STATE_FOCUS.secondary,
   ].join(" "),
-  outlined: COMON_OUTLINED,
-  outlinedIcon: [COMON_OUTLINED, BASE_VARIANTS.outlinedIcon].join(" "),
+  outlined: COMMON_OUTLINED,
+  outlinedIcon: [COMMON_OUTLINED, BASE_VARIANTS.outlinedIcon].join(" "),
 };
 
 // size 정의
