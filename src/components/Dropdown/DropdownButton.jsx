@@ -15,7 +15,7 @@ import { MenuButton } from "@headlessui/react";
  */
 
 const typeClasses = {
-  base: "flex w-auto items-center gap-x-1.5 cursor-pointer duration-100",
+  base: "flex w-auto items-center gap-x-0.5 cursor-pointer duration-100",
   default: "justify-center text-gray-900 hover:text-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed",
   select:
     "w-full h-[50px] px-[16px] pr-[13px] justify-between border rounded-[8px] border-gray-300 text-gray-600 text-base leading-6 tracking-[-1%] hover:border-gray-600 focus:outline-2 focus:outline-gray-600 focus:outline-offset-[-2px] active:border-2 active:border-gray-600 active:text-gray-900 disabled:pointer-events-none disabled:bg-gray-100 disabled:border-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed",
@@ -39,8 +39,8 @@ const DropdownButton = ({
         onClick={onClick}
         aria-label={icLabel}
       >
-        {label && <span className="mr-0.5">{label}</span>}
-        {icon && (
+        {label && <span>{label}</span>}
+        {label && icon && (
           <span className="w-5 h-5" aria-label={icLabel || "icon"}>
             {icon}
           </span>
