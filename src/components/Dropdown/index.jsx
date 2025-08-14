@@ -9,10 +9,17 @@ import {
  * Dropdown Wrapper 컴포넌트
  * Headless UI 라이브러리 Menu 커스텀하여 상태 관리
  */
-const Dropdown = ({ button, children, className = "" }) => {
+const typeClasses = {
+  // 기능별로 자유롭게 타입 추가
+  base: "relative",
+  default: "inline-block",
+  select: "block max-w-[320px]",
+};
+
+const Dropdown = ({ button, children, type = "base", className = "" }) => {
   return (
     <>
-      <Menu as="div" className={`relative ${className}`}>
+      <Menu className={`${typeClasses.base} ${type !== "base" ? typeClasses[type] || "" : ""} ${className}`} as="div">
         {button}
         {children}
       </Menu>

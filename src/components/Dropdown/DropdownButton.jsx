@@ -31,7 +31,7 @@ const DropdownButton = ({
 
   // 셀렉트박스 스타일 버튼
   const selectButtonClass = `
-    ${baseClasses} w-full max-w-[320px] h-[50px] px-[16px] pr-[13px] justify-between border rounded-[8px] border-gray-300 text-gray-600 text-base leading-6 tracking-[-1%] hover:border-gray-600 focus:outline-2 focus:outline-gray-600 focus:outline-offset-[-2px] active:border-2 active:border-gray-600 active:text-gray-900 disabled:pointer-events-none disabled:bg-gray-100 disabled:border-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed
+    ${baseClasses} w-full h-[50px] px-[16px] pr-[13px] justify-between border rounded-[8px] border-gray-300 text-gray-600 text-base leading-6 tracking-[-1%] hover:border-gray-600 focus:outline-2 focus:outline-gray-600 focus:outline-offset-[-2px] active:border-2 active:border-gray-600 active:text-gray-900 disabled:pointer-events-none disabled:bg-gray-100 disabled:border-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed
   `;
 
   // type에 따른 클래스 매핑

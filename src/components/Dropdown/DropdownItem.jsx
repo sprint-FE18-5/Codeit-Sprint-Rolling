@@ -4,7 +4,7 @@ import { MenuItem } from "@headlessui/react";
  * Dropdown Item 항목
  */
 const DropdownItem = ({ label, href, onClick }) => (
-  <MenuItem>
+  <MenuItem as="li">
     {href ? (
       <a
         href={href}
