@@ -1,5 +1,12 @@
 import { MenuItems } from "@headlessui/react";
 
+/**
+ * Dropdown List Wrapper 컴포넌트
+ * @param {object} props
+ * @param {React.ReactNode} props.children - Wrapper 내부에 표시할 아이템 요소
+ * @param {string} className - Tailwind 추가 클래스
+ * @param {string} type - 리스트 Wrapper 타입(base, select, emoji, share)
+ */
 const typeClasses = {
   // 기능별로 자유롭게 타입 추가
   base: "absolute right-0 mt-2 bottom bg-white rounded-[8px] border border-[#ccc] py-[10px] shadow-[0_2px_12px_0px_#00000014] z-[101] focus:outline-0",
