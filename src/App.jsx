@@ -1,12 +1,10 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
-import InputTest from "./components/Form/Test";
 
 function App() {
   return (
     <>
-      <InputTest />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={/* 메인페이지 */ null} />
