@@ -23,7 +23,7 @@ const COMMON_BUTTON = "cursor-pointer flex items-center justify-center";
  * @param {function} [props.onClick] - onClick 콜백 함수
  * @returns {JSX.Element}
  */
-const CircleButton = ({ className = "", onClick = undefined }) => {
+const CircleButton = ({ className = "", onClick }) => {
   const btnStyle = COMMON_BUTTON;
   const circleStyle = CIRCLE_BUTTON;
   return (
