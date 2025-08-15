@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "nanum";
+  font-family: "NanumGothic";
   src: url("../assets/NanumGothic-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "nanum";
+  font-family: "NanumGothic";
   src: url("../assets/NanumGothic-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
@@ -14,8 +14,7 @@
 }
 
 @theme {
-  --font-nanum700: "nanum";
-  --font-nanum400: "nanum";
+  --font-nanum: "NanumGothic";
   --text-28: 28px;
   --text-24: 24px;
   --text-20: 20px;
