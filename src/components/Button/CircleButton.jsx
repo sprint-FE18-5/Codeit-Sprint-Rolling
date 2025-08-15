@@ -28,7 +28,7 @@ const CircleButton = ({ className = "", onClick }) => {
   const circleStyle = CIRCLE_BUTTON;
   return (
     <button aria-label="추가" className={`${btnStyle} ${circleStyle} ${className}`} onClick={onClick}>
-      <img src={icPlus} alt="" className="w-[24px]" />
+      <img src={icPlus} alt="플러스 아이콘" className="w-[24px]" />
     </button>
   );
 };
