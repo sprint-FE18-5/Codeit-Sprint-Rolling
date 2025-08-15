@@ -7,7 +7,7 @@ import { MenuItems } from "@headlessui/react";
  * @param {string} className - Tailwind 추가 클래스
  * @param {string} type - 리스트 Wrapper 타입(base, select, emoji, share)
  */
-const typeClasses = {
+const TYPE_CLASSES = {
   // 기능별로 자유롭게 타입 추가
   base: "absolute right-0 mt-2 top-full bg-white rounded-[8px] border border-[#ccc] py-[10px] shadow-[0_2px_12px_0px_#00000014] z-[101] focus:outline-0",
   select: "w-full",
@@ -18,7 +18,7 @@ const typeClasses = {
 const DropdownList = ({ children, type = "base", className = "" }) => (
   <MenuItems
     as="ul"
-    className={`${typeClasses.base} ${type !== "base" ? typeClasses[type] || "" : ""} ${className}`}
+    className={`${TYPE_CLASSES.base} ${type !== "base" ? TYPE_CLASSES[type] || "" : ""} ${className}`}
     tabIndex={-1}
   >
     {children}
