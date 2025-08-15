@@ -1,4 +1,5 @@
 import { MenuButton } from "@headlessui/react";
+import { useDropdown } from "../../hooks/useDropdown.jsx";
 /* 테스트용 */
 import icArrowDown from "../../assets/icArrowDown.svg";
 import icArrowUp from "../../assets/icArrowUp.svg";
@@ -17,7 +18,7 @@ import icArrowUp from "../../assets/icArrowUp.svg";
  * @param {string} type - 스타일 타입 (base, default, select, emoji)
  * @param {boolean} disabled - 버튼 비활성화 여부
  * @param {Object} toggleIcons - 토글 아이콘 설정 { open: 이미지, closed: 이미지 }
- 
+ * @param {boolean} showSelectedValue - 선택된 값을 표시할지 여부
  */
 
 // 기본 토글 아이콘
@@ -44,17 +45,27 @@ const DropdownButton = ({
   variant = "basic",
   type = "base",
   toggleIcons = DEFAULT_TOGGLE_ICONS,
+  showSelectedValue = false,
 }) => {
+  const { selectedLabel, selectedValue } = useDropdown();
+  // 선택된 값이 있으면 선택된 값을 표시
+  const displayLabel = showSelectedValue && selectedLabel ? selectedLabel : label;
+  // 선택된 상태인지 확인
+  const isSelected = showSelectedValue && selectedValue && selectedValue !== "";
+  // 선택된 값이 있으면 active 상태 스타일 반영
+  const selectedClasses = isSelected && type === "select" ? "border-2 !border-gray-600 !text-gray-900" : "";
   return (
     <MenuButton
-      className={`${TYPE_CLASSES.base} ${type !== "base" ? TYPE_CLASSES[type] || "" : ""} ${className}`}
+      className={`${TYPE_CLASSES.base} ${
+        type !== "base" ? TYPE_CLASSES[type] || "" : ""
+      } ${selectedClasses} ${className}`}
       disabled={disabled}
       onClick={onClick}
       aria-label={icLabel}
     >
       {({ open }) => (
         <>
-          {label}
+          {displayLabel}
 
           {/* variant basic 일 때 */}
           {variant === "basic" && icon && (

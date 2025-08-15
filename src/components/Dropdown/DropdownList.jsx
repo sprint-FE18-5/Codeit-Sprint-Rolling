@@ -1,4 +1,5 @@
 import { MenuItems } from "@headlessui/react";
+import React from "react";
 
 /**
  * Dropdown List Wrapper 컴포넌트
@@ -15,14 +16,25 @@ const TYPE_CLASSES = {
   share: "w-[140px]",
 };
 
-const DropdownList = ({ children, type = "base", className = "" }) => (
-  <MenuItems
-    as="ul"
-    className={`${TYPE_CLASSES.base} ${type !== "base" ? TYPE_CLASSES[type] || "" : ""} ${className}`}
-    tabIndex={-1}
-  >
-    {children}
-  </MenuItems>
-);
+const DropdownList = ({ children, type = "base", className = "", style = {} }) => {
+  // children에 type 전달
+  const childrenWithType = React.Children.map(children, child => {
+    if (React.isValidElement(child) && child.type.name === "DropdownItem") {
+      return React.cloneElement(child, { type: child.props.type || type });
+    }
+    return child;
+  });
+
+  return (
+    <MenuItems
+      as="ul"
+      className={`${TYPE_CLASSES.base} ${type !== "base" ? TYPE_CLASSES[type] || "" : ""} ${className}`}
+      style={style}
+      tabIndex={-1}
+    >
+      {childrenWithType}
+    </MenuItems>
+  );
+};
 
 export default DropdownList;

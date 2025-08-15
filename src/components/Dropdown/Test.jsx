@@ -1,5 +1,4 @@
-import { Dropdown, DropdownButton, DropdownList, DropdownItem } from ".";
-//import 예시: import Button from "../Button/Button";
+import { Dropdown, DropdownButton, DropdownList, DropdownItem, DropdownProvider } from ".";
 
 /**
  * 테스트 컴포넌트
@@ -25,9 +24,9 @@ export const ShareTest = () => (
 const DropdownTest = () => {
   return (
     <>
-      <div className="m-50">
+      <div className="pt-10 pb-10 max-w-[320px] mx-auto">
         {/* 이모지 버튼 */}
-        <Dropdown type="default" className="m-2">
+        <Dropdown type="default">
           <DropdownButton
             variant="toggle"
             type="emoji"
@@ -47,26 +46,27 @@ const DropdownTest = () => {
         </Dropdown>
 
         {/* 공유 버튼 */}
-        <Dropdown className="m-2">
+        <Dropdown>
           <DropdownButton variant="basic" type="default" icon={<ShareTest />} icLabel="공유하기 버튼" />
-          <DropdownList type="share">
+          <DropdownList type="select" className="!w-[140px]">
             <DropdownItem label="카카오톡 공유"></DropdownItem>
             <DropdownItem label="URL 공유"></DropdownItem>
           </DropdownList>
         </Dropdown>
 
-        {/* 셀렉트 박스 */}
-        <Dropdown type="select" className="m-2">
-          <DropdownButton variant="select" type="select" label="옵션을 선택해주세요" />
-          <DropdownList type="select">
-            <DropdownItem label="옵션 1"></DropdownItem>
-            <DropdownItem label="옵션 2"></DropdownItem>
-            <DropdownItem label="옵션 3"></DropdownItem>
-          </DropdownList>
-        </Dropdown>
+        {/* 셀렉트 박스 - 옵션 선택 기능 */}
+        <DropdownProvider onSelect={() => {}}>
+          <Dropdown type="select">
+            <DropdownButton label="옵션 선택" variant="select" type="select" showSelectedValue={true} />
+            <DropdownList type="select">
+              <DropdownItem label="옵션 1" value="1" type="select" />
+              <DropdownItem label="옵션 2" value="2" type="select" />
+            </DropdownList>
+          </Dropdown>
+        </DropdownProvider>
 
         {/* Error */}
-        <Dropdown type="select" className="m-2">
+        <Dropdown type="select">
           <DropdownButton variant="select" type="select" label="에러 타입은 차후 작업 예정입니다." />
           <DropdownList type="select">
             <DropdownItem label="옵션 1"></DropdownItem>
@@ -76,7 +76,7 @@ const DropdownTest = () => {
         </Dropdown>
 
         {/* Disabled */}
-        <Dropdown type="select" className="m-2">
+        <Dropdown type="select">
           <DropdownButton variant="select" type="select" label="Disabled" disabled={true} />
           <DropdownList type="select">
             <DropdownItem label="옵션 1"></DropdownItem>
@@ -86,7 +86,7 @@ const DropdownTest = () => {
         </Dropdown>
 
         {/* 커스텀 토글 예시 */}
-        <Dropdown type="select" className="m-2">
+        <Dropdown type="select">
           <DropdownButton
             variant="select"
             type="select"

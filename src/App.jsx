@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
-import DropdownTest from "./components/Dropdown/Test";
+import DropdownTest from "./components/Dropdown/test";
 function App() {
   return (
     <>
