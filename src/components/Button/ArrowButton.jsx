@@ -38,7 +38,7 @@ const ArrowButton = ({ direction = "left", className = "", onClick }) => {
 
   return (
     <button aria-label={ariaLabel} className={`${btnStyle} ${arrowStyle} ${className}`} onClick={onClick}>
-      <img src={icArrow} alt="" className={`w-[16px] ${rotate} ${margin}`} />
+      <img src={icArrow} alt="화살표 아이콘" className={`w-[16px] ${rotate} ${margin}`} />
     </button>
   );
 };
