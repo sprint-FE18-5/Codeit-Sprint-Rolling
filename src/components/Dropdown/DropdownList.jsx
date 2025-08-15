@@ -12,7 +12,7 @@ const TYPE_CLASSES = {
   // 기능별로 자유롭게 타입 추가
   base: "absolute right-0 mt-2 top-full bg-white rounded-[8px] border border-[#ccc] py-[10px] shadow-[0_2px_12px_0px_#00000014] z-[101] focus:outline-0",
   select: "w-full",
-  emoji: "w-[203px] md:w-[321px] whitespace-nowrap p-4 md:p-6 grid grid-cols-3 md:grid-cols-4 gap-x-2 gap-y-2.5",
+  emoji: "w-[203px] md:w-[321px] whitespace-nowrap p-4 md:p-6 flex flex-wrap gap-[10px_8px]",
   share: "w-[140px]",
 };
 

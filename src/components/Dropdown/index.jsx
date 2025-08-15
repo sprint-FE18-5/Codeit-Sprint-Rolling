@@ -47,7 +47,7 @@ const TYPE_CLASSES = {
  *   </Dropdown>
  * </DropdownProvider>
  *
- * @example 3. 커스텀 토글 아이콘이 있을 시
+ * @example 3. 커스텀 토글 아이콘이 있을 시(링크 속성은 예시, 자유롭게 선택해 사용)
  * <Dropdown type="select">
  *   <DropdownButton
  *     variant="select"
@@ -55,17 +55,55 @@ const TYPE_CLASSES = {
  *     toggleIcons={{ open: "아이콘경로", closed: "아이콘경로" }}
  *   />
  *   <DropdownList type="select">
- *     <DropdownItem label="옵션 1" />
+ *     <DropdownItem label="링크 1" 
+ *       href="https://google.com" 
+ *       label="Google 링크"
+ *       href="https://google.com"
+ *       target="_blank"
+ *       rel="noopener noreferrer"
+ *       title="구글로 이동" />
+ *     <DropdownItem label="버튼 1" onClick={() => alert("버튼 클릭")} />
+ *     <DropdownItem label="버튼 2" onClick={() => alert("버튼 클릭")} />
  *   </DropdownList>
- * </Dropdown>
+ * </Dropdown> 
  *
- * @example
+ * @example 4. 에러 처리가 있는 셀렉트 박스
+ * <DropdownProvider onSelect={handleSelectChange}>
+ *   <Dropdown 
+ *     type="select"
+ *     onStateChange={(isOpen) => setIsDropdownOpen(isOpen)}
+ *   >
+ *     <DropdownButton
+ *       variant="select"
+ *       type="select"
+ *       label="에러 메시지 옵션"
+ *       hasError={selectHasError}
+ *       showSelectedValue={true}
+ *     />
+ *     <DropdownList type="select">
+ *       <DropdownItem label="옵션 1" value="1" />
+ *       <DropdownItem label="옵션 2" value="2" />
+ *       <DropdownItem label="옵션 3" value="3" />
+ *     </DropdownList>
+ *   </Dropdown>
+ *   <FormMessage message={selectError} show={selectHasError} />
+ * </DropdownProvider>
+
  */
 
-const Dropdown = ({ children, type = "base", className = "" }) => {
+const Dropdown = ({ children, type = "base", className = "", onStateChange }) => {
   return (
     <Menu className={`dropdown ${className}`} as="div">
-      <div className={`${TYPE_CLASSES.base} ${type !== "base" ? TYPE_CLASSES[type] || "" : ""}`}>{children}</div>
+      {({ open }) => {
+        if (onStateChange) {
+          onStateChange(open);
+        }
+        return (
+          <div className={`${TYPE_CLASSES.base} ${type !== "base" ? TYPE_CLASSES[type] || "" : ""}`}>
+            {typeof children === "function" ? children({ open }) : children}
+          </div>
+        );
+      }}
     </Menu>
   );
 };

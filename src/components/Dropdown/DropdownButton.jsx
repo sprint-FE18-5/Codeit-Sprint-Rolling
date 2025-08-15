@@ -19,6 +19,7 @@ import icArrowUp from "../../assets/icArrowUp.svg";
  * @param {boolean} disabled - 버튼 비활성화 여부
  * @param {Object} toggleIcons - 토글 아이콘 설정 { open: 이미지, closed: 이미지 }
  * @param {boolean} showSelectedValue - 선택된 값을 표시할지 여부
+ * @param {boolean} hasError - 에러 상태 여부
  */
 
 // 기본 토글 아이콘
@@ -29,10 +30,15 @@ const DEFAULT_TOGGLE_ICONS = {
 
 const TYPE_CLASSES = {
   base: "flex w-auto items-center gap-x-0.5 cursor-pointer duration-100",
-  default: "justify-center text-gray-900 hover:text-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed",
+  default: "justify-center text-[#181818] hover:text-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed",
   select:
     "w-full h-[50px] px-[16px] pr-[13px] justify-between border rounded-[8px] border-gray-300 text-gray-600 text-base leading-6 tracking-[-1%] hover:border-gray-600 focus:outline-2 focus:outline-gray-600 focus:outline-offset-[-2px] active:border-2 active:border-gray-600 active:text-gray-900 disabled:pointer-events-none disabled:bg-gray-100 disabled:border-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed",
   emoji: "pr-[6px] gap-x-2",
+};
+
+// 에러 상태 클래스
+const ERROR_CLASSES = {
+  select: "!border-red-500 hover:!border-red-600 focus:!outline-red-500",
 };
 
 const DropdownButton = ({
@@ -46,6 +52,7 @@ const DropdownButton = ({
   type = "base",
   toggleIcons = DEFAULT_TOGGLE_ICONS,
   showSelectedValue = false,
+  hasError = false,
 }) => {
   const { selectedLabel, selectedValue } = useDropdown();
   // 선택된 값이 있으면 선택된 값을 표시
@@ -54,14 +61,18 @@ const DropdownButton = ({
   const isSelected = showSelectedValue && selectedValue && selectedValue !== "";
   // 선택된 값이 있으면 active 상태 스타일 반영
   const selectedClasses = isSelected && type === "select" ? "border-2 !border-gray-600 !text-gray-900" : "";
+  // 에러 상태 스타일
+  const errorClasses = hasError && ERROR_CLASSES[type] ? ERROR_CLASSES[type] : "";
+
   return (
     <MenuButton
       className={`${TYPE_CLASSES.base} ${
         type !== "base" ? TYPE_CLASSES[type] || "" : ""
-      } ${selectedClasses} ${className}`}
+      } ${selectedClasses} ${errorClasses} ${className}`}
       disabled={disabled}
       onClick={onClick}
       aria-label={icLabel}
+      aria-invalid={hasError}
     >
       {({ open }) => (
         <>
