@@ -1,23 +1,11 @@
 // import Badge from "./Badge/Badge";
-// import CircleButton from "./Button/Button";
+import CircleButton from "../Button/CircleButton";
 
 import icDelete from "../../assets/icDelete.svg"; // 휴지통 아이콘 import
 
 // 임시 Badge 컴포넌트
 const Badge = ({ text, badgeColor = "bg-violet-100 text-violet-500" }) => (
   <span className={`inline-block ${badgeColor} text-xs px-2 py-0.5 rounded-lg mt-0.5`}>{text}</span>
-);
-
-// 임시 Button 컴포넌트 (+버튼)
-const CircleButton = ({ onClick }) => (
-  <button
-    onClick={onClick}
-    className="w-12 h-12 rounded-full border-none bg-gray-500 shadow-sm flex items-center justify-center text-3xl text-white cursor-pointer"
-    aria-label="추가"
-    type="button"
-  >
-    +
-  </button>
 );
 
 // Card 컴포넌트
@@ -72,4 +60,4 @@ const AddCard = ({ onClick }) => {
   );
 };
 
-export { Card, Badge, CircleButton, AddCard };
+export { Card, Badge, AddCard };
