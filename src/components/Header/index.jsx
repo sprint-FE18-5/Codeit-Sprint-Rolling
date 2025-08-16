@@ -1,5 +1,7 @@
 import icLogo from "../../assets/icLogo.svg";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { VISIBLE_HEADER_BTN_PATHS } from "../../constants/VISIBLE_PATHS";
+import useIsMatchURL from "../../hooks/useIsMatchURL";
 
 const HeaderBase = ({ children }) => {
   return (
@@ -10,12 +12,8 @@ const HeaderBase = ({ children }) => {
 };
 
 const Header = () => {
+  const isMatchURL = useIsMatchURL(VISIBLE_HEADER_BTN_PATHS);
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-
-  const PATHS = ["/", "/list"];
-
-  const isRootOrListPath = PATHS.includes(pathname);
 
   return (
     <HeaderBase>
@@ -24,7 +22,7 @@ const Header = () => {
         <h1 className="font-poppins font-bold leading-[100%]">Rolling</h1>
       </Link>
 
-      {isRootOrListPath && (
+      {isMatchURL && (
         <button className="Button Outlined-40" onClick={() => navigate("/post")}>
           롤링 페이퍼 만들기
         </button>
