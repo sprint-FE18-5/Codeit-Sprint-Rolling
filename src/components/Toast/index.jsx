@@ -6,6 +6,18 @@ import { useEffect, useState } from "react";
 const TOAST_STYLE =
   "w-[320px] md:w-[524px] h-[64px] bg-black/80 flex justify-between rounded-[8px] py-[20px] px-[30px] text-white";
 
+/**
+ * 토스트 메시지 출력 컴포넌트
+ *
+ * @param {Object} props - Toast 컴포넌트 props
+ * @param {number} [props.duration=3000] - 토스트 유지 시간(ms)
+ * @param {string} [props.message=""] - 출력할 메시지
+ * @param {"success"|"error"} [props.type="success"] - 토스트 타입 지정
+ * @param {number} [props.bottom=20] - 화면 하단으로부터 위치(px)
+ * @param {Function} [props.onClose] - onClose 콜백 함수
+ * @param {Function} [props.onClick] - onClick 콜백 함수
+ * @returns {JSX.Element}
+ */
 const Toast = ({ duration = 3000, message = "", type = "success", bottom = 20, onClose, onClick }) => {
   const [isVisible, setIsVisible] = useState(true);
 
