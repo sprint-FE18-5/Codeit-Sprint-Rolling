@@ -8,3 +8,8 @@
     @apply mx-auto max-w-[1248px] px-[24px];
   }
 }
+
+@theme {
+  --color-beige-100: #fff0d6;
+  --color-beige-500: #ff8832;
+}
