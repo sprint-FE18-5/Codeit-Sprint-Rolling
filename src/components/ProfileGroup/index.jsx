@@ -1,11 +1,11 @@
 // 프로필 이미지 그룹 컴포넌트
 const ProfileGroup = ({ profileImages = [], profileCount = 0 }) => (
   <div className="flex items-center relative h-7">
-    {profileImages.slice(0, 3).map((img, idx) => (
+    {profileImages.slice(0, 3).map(msg => (
       <img
-        key={idx}
-        src={img}
-        alt="profile"
+        key={msg.id}
+        src={msg.profileImageURL}
+        alt="프로필 이미지"
         className="w-7 h-7 rounded-full border-2 border-white -ml-3 first:ml-0 z-10"
       />
     ))}
