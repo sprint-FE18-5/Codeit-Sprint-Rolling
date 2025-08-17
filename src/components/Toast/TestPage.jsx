@@ -1,7 +1,7 @@
 import useToast from "../../hooks/useToast";
 
 const TestPage = () => {
-  const { createToast, ToastComponent } = useToast();
+  const { createToast } = useToast();
 
   return (
     <div className="flex gap-4">
@@ -17,7 +17,6 @@ const TestPage = () => {
       >
         실패 토스트 열기
       </button>
-      {ToastComponent}
     </div>
   );
 };
