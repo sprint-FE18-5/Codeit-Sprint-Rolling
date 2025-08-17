@@ -1,27 +1,13 @@
-import { useState } from "react";
-import Toast from "../components/Toast";
+import { useContext } from "react";
+import { ToastContext } from "../components/Toast/ToastProvider";
 
 const useToast = () => {
-  const [toast, setToast] = useState(null);
+  const toastContext = useContext(ToastContext);
 
-  const createToast = ({ duration = 3000, message = "", type = "success", bottom = 20, onClose, onClick }) => {
-    setToast({ duration, message, type, bottom, onClose, onClick, key: Date.now() });
-  };
-
-  const handleClose = () => setToast(null);
-
-  const ToastComponent = toast && (
-    <Toast
-      key={toast.key}
-      message={toast.message}
-      type={toast.type}
-      duration={toast.duration}
-      bottom={toast.bottom}
-      onClose={handleClose}
-    ></Toast>
-  );
-
-  return { createToast, ToastComponent };
+  if (!toastContext) {
+    throw new Error("useToast는 ToastProvider 내부에서 사용해야 합니다");
+  }
+  return toastContext;
 };
 
 export default useToast;
