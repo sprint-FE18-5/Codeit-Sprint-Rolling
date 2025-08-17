@@ -1,8 +1,9 @@
 import { Outlet } from "react-router";
+import Header from "../Header/Header";
 const Layout = () => {
   return (
     <>
-      <header>헤더입니다!!!</header>
+      <Header />
       <Outlet />
     </>
   );

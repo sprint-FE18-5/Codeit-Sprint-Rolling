@@ -7,4 +7,7 @@
   .my-container {
     @apply mx-auto max-w-[1248px] px-[24px];
   }
+  .card-size {
+    @apply min-w-[320px] min-h-[230px] sm:w-[70vw] sm:min-h-[250px] md:w-[384px] md:min-h-[280px];
+  }
 }
