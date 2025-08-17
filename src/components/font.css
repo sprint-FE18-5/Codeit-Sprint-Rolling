@@ -24,3 +24,47 @@
   --text-14: 14px;
   --text-12: 12px;
 }
+@layer componets {
+  .Font-28-Bold {
+    @apply font-nanum text-28 font-bold;
+  }
+  .Font-24-Bold {
+    @apply font-nanum text-24 font-bold;
+  }
+  .Font-20-Bold {
+    @apply font-nanum text-20 font-bold;
+  }
+  .Font-18-Bold {
+    @apply font-nanum text-18 font-bold;
+  }
+  .Font-16-Bold {
+    @apply font-nanum text-16 font-bold;
+  }
+  .Font-15-Bold {
+    @apply font-nanum text-15 font-bold;
+  }
+  .Font-14-Bold {
+    @apply font-nanum text-14 font-bold;
+  }
+  .Font-24-Regular {
+    @apply font-nanum text-24;
+  }
+  .Font-20-Regular {
+    @apply font-nanum text-20;
+  }
+  .Font-18-Regular {
+    @apply font-nanum text-18;
+  }
+  .Font-16-Regular {
+    @apply font-nanum text-16;
+  }
+  .Font-15-Regular {
+    @apply font-nanum text-15;
+  }
+  .Font-14-Regular {
+    @apply font-nanum text-14;
+  }
+  .Font-12-Regular {
+    @apply font-nanum text-12;
+  }
+}
