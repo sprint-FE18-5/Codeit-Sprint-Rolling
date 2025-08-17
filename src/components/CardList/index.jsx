@@ -2,6 +2,18 @@ import { useNavigate } from "react-router-dom";
 import { ProfileGroup, CardCountInfo } from "../ProfileGroup";
 import EmojiBadge from "../EmojiBadge";
 
+/**
+ * CardList 컴포넌트 props
+ * @param {string} title - 카드 제목
+ * @param {Array} recentMessages - 최근 메시지 배열 (프로필 이미지 추출용)
+ * @param {number} profileCount - 프로필 이미지 그룹의 총 개수
+ * @param {number} cardCount - 카드 작성자 수
+ * @param {string} bgColor - 카드 배경색 클래스명
+ * @param {Array} emojiStats - 이모티콘 통계 배열
+ * @param {string} imgBackground - 카드 배경 이미지 URL
+ * @param {string} toPage - 카드 클릭 시 이동할 경로
+ */
+
 // CardList 컴포넌트
 const CardList = ({
   title = "To. 이름",
@@ -10,7 +22,7 @@ const CardList = ({
   cardCount = 0,
   bgColor = "bg-violet-100",
   emojiStats = [],
-  imageUrl = "",
+  imgBackground = "",
   toPage = "/post/1",
 }) => {
   const navigate = useNavigate();
@@ -24,6 +36,15 @@ const CardList = ({
     profileImageURL: msg.profileImageURL,
   }));
 
+  // 배경 이미지 변수 조건부 렌더링
+  const imgBackgroundElement = imgBackground ? (
+    <img
+      src={imgBackground}
+      alt="card background"
+      className="absolute inset-0 w-full h-full object-cover rounded-2xl z-0 opacity-70"
+    />
+  ) : null;
+
   return (
     <div
       className={`relative rounded-2xl shadow-sm ${bgColor} cursor-pointer p-6
@@ -31,13 +52,7 @@ const CardList = ({
       md:w-[275px] md:h-[260px] md:min-w-[208px] md:min-h-[232px] border border-black/10`}
       onClick={() => navigate(toPage)}
     >
-      {imageUrl && (
-        <img
-          src={imageUrl}
-          alt="card background"
-          className="absolute inset-0 w-full h-full object-cover rounded-2xl z-0 opacity-70"
-        />
-      )}
+      {imgBackgroundElement}
 
       <div className="relative z-10 flex flex-col h-full">
         <div>
