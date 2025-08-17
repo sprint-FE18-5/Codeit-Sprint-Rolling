@@ -2,11 +2,12 @@ import icLogo from "../../assets/icLogo.svg";
 import { Link, useNavigate } from "react-router";
 import { VISIBLE_HEADER_BTN_PATHS } from "../../constants/VISIBLE_PATHS";
 import useIsMatchURL from "../../hooks/useIsMatchURL";
+import { ProfileGroup } from "../ProfileGroup";
 
 const HeaderBase = ({ children }) => {
   return (
     <div className="border-b border-[#EDEDED] py-[11px] h-[65px]">
-      <nav className="flex justify-between h-[42px] my-container">{children}</nav>
+      <nav className="flex justify-between items-center h-[42px] my-container">{children}</nav>
     </div>
   );
 };
@@ -31,8 +32,9 @@ const Header = () => {
   );
 };
 
-const HeaderService = () => {
-  return <HeaderBase>Test</HeaderBase>;
+const HeaderService = ({ recipient }) => {
+  console.log(recipient);
+  return <HeaderBase></HeaderBase>;
 };
 
 export { Header, HeaderService };
