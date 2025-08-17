@@ -17,7 +17,10 @@ const ProfileGroup = ({ profileImages = [], profileCount = 0 }) => (
 
 // 카드 개수 정보 컴포넌트
 const CardCountInfo = ({ cardCount }) => (
-  <div className="text-sm text-[#3a3a3a] font-normal">{cardCount}명이 작성했어요!</div>
+  <div className="mb-4 mt-3">
+    <span className="font-bold text-[14px] md:text-[16px]">{cardCount}</span>
+    <span className="font-normal text-[14px] md:text-[16px]">명이 작성했어요!</span>
+  </div>
 );
 
 export { ProfileGroup, CardCountInfo };
