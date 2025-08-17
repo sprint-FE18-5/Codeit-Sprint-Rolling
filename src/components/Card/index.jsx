@@ -22,12 +22,9 @@ const CircleButton = ({ onClick }) => (
 
 // Card 컴포넌트
 const Card = ({ profileImg, name, badgeText, badgeColor, message = "", date = "", onDelete, onClick, cardID }) => {
-  // 삭제 버튼 핸들러
   const handleClickDelete = e => {
     e.stopPropagation();
-    if (onDelete) {
-      onDelete(cardID);
-    }
+    onDelete?.(cardID);
   };
 
   return (
