@@ -1,5 +1,23 @@
 @import "tailwindcss";
+/* 폰트등록 */
+@font-face {
+  font-family: "Pretendard";
+  src: url("../src/utils/Pretendard-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../src/utils/Pretendard-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
+  /* 색상토큰 등록 */
+
   /* purple */
   --color-purple-100: #f8f0ff;
   --color-purple-200: #ecd9ff;
@@ -54,4 +72,61 @@
 
   /* surface */
   --color-surface: #f6f8ff;
+
+  /* 폰트토큰 등록 */
+
+  --font-pretendard: "Pretendard";
+  --text-28: 28px;
+  --text-24: 24px;
+  --text-20: 20px;
+  --text-18: 18px;
+  --text-16: 16px;
+  --text-15: 15px;
+  --text-14: 14px;
+  --text-12: 12px;
+}
+/* 폰트 유틸클래스 합성 */
+@layer componets {
+  .Font-28-Bold {
+    @apply font-pretendard text-28 font-bold;
+  }
+  .Font-24-Bold {
+    @apply font-pretendard text-24 font-bold;
+  }
+  .Font-20-Bold {
+    @apply font-pretendard text-20 font-bold;
+  }
+  .Font-18-Bold {
+    @apply font-pretendard text-18 font-bold;
+  }
+  .Font-16-Bold {
+    @apply font-pretendard text-16 font-bold;
+  }
+  .Font-15-Bold {
+    @apply font-pretendard text-15 font-bold;
+  }
+  .Font-14-Bold {
+    @apply font-pretendard text-14 font-bold;
+  }
+  .Font-24-Regular {
+    @apply font-pretendard text-24;
+  }
+  .Font-20-Regular {
+    @apply font-pretendard text-20;
+  }
+  .Font-18-Regular {
+    @apply font-pretendard text-18;
+  }
+  .Font-16-Regular {
+    @apply font-pretendard text-16;
+  }
+  .Font-15-Regular {
+    @apply font-pretendard text-15;
+  }
+  .Font-14-Regular {
+    @apply font-pretendard text-14;
+  }
+  .Font-12-Regular {
+    @apply font-pretendard text-12;
+  }
 }
