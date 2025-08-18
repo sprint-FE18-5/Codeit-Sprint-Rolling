@@ -1,7 +1,12 @@
 import { useContext } from "react";
 import DropdownContext from "./DropdownContext";
 
-const DropdownItem = ({ onClick, children }) => {
+const TYPE_CLASSES = {
+  base: "dropdown-item",
+  custom: "",
+};
+
+const DropdownItem = ({ as: Tag = "button", onClick, children, className = "", type = "base", ...props }) => {
   const { setSelected, setIsOpen } = useContext(DropdownContext);
 
   const handleClick = e => {
@@ -11,8 +16,10 @@ const DropdownItem = ({ onClick, children }) => {
   };
 
   return (
-    <li className="dropdown-item" onClick={handleClick}>
-      {children}
+    <li className={`${TYPE_CLASSES[type] || ""} ${className}`}>
+      <Tag onClick={handleClick} {...props}>
+        {children}
+      </Tag>
     </li>
   );
 };

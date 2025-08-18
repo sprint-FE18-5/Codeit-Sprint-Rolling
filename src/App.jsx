@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Dropdown>
-        <DropdownTrigger>친구</DropdownTrigger>
+        <DropdownTrigger showArrow>친구</DropdownTrigger>
         <DropdownContent>
           <DropdownItem>친구</DropdownItem>
           <DropdownItem>지인</DropdownItem>

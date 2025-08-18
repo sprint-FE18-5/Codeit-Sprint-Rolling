@@ -11,7 +11,11 @@ const Dropdown = ({ children }) => {
     setSelected,
   };
 
-  return <DropdownContext.Provider value={value}>{children}</DropdownContext.Provider>;
+  return (
+    <DropdownContext.Provider value={value}>
+      <div className={`dropdown relative inline-block`}>{children}</div>
+    </DropdownContext.Provider>
+  );
 };
 
 export { Dropdown };
