@@ -1,5 +1,5 @@
 // import Badge from "./Badge/Badge";
-// import CircleButton from "./Button/Button";
+import CircleButton from "../Button/CircleButton";
 
 import icDelete from "../../assets/icDelete.svg"; // 휴지통 아이콘 import
 
@@ -86,4 +86,4 @@ const AddCard = ({ onClick }) => {
   );
 };
 
-export { Card, Badge, CircleButton, AddCard };
+export { Card, Badge, AddCard };
