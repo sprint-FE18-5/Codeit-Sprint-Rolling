@@ -3,16 +3,27 @@ import DropdownContext from "./DropdownContext";
 
 const TYPE_CLASSES = {
   base: "dropdown-item",
+  select: "dropdown-item-select",
   custom: "",
 };
 
-const DropdownItem = ({ as: Tag = "button", onClick, children, className = "", type = "base", ...props }) => {
+const DropdownItem = ({
+  as: Tag = "button",
+  onClick,
+  children,
+  className = "",
+  type = "base", // base | select
+  value,          // select 타입일 때 실제 값
+  ...props
+}) => {
   const { setSelected, setIsOpen } = useContext(DropdownContext);
 
   const handleClick = e => {
-    setSelected(children);
+    if (type === "select") {
+      setSelected({ value: value ?? children, label: children });
+    }
     setIsOpen(false);
-    onClick?.(children, e);
+    onClick?.(type === "select" ? value ?? children : children, e);
   };
 
   return (

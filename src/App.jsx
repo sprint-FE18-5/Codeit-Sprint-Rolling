@@ -9,10 +9,15 @@ function App() {
       <Dropdown>
         <DropdownTrigger showArrow>친구</DropdownTrigger>
         <DropdownContent>
-          <DropdownItem>친구</DropdownItem>
-          <DropdownItem>지인</DropdownItem>
-          <DropdownItem>동료</DropdownItem>
-          <DropdownItem>가족</DropdownItem>
+          <DropdownItem type="select" value="option1">
+            옵션 1
+          </DropdownItem>
+          <DropdownItem type="select" value="option2">
+            옵션 2
+          </DropdownItem>
+          <DropdownItem type="select" value="option3">
+            옵션션 3
+          </DropdownItem>
         </DropdownContent>
       </Dropdown>
       <Routes>

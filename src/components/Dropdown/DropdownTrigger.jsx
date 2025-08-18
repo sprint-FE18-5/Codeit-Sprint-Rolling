@@ -23,7 +23,7 @@ const DropdownTrigger = ({
   onClick,
   ...props
 }) => {
-  const { isOpen: contextOpen, setIsOpen } = useContext(DropdownContext);
+  const { isOpen: contextOpen, setIsOpen, selected } = useContext(DropdownContext);
   const isOpen = propOpen ?? contextOpen;
   const handleClick = e => {
     setIsOpen(!isOpen);
@@ -31,8 +31,14 @@ const DropdownTrigger = ({
   };
 
   return (
-    <Tag className={`${TYPE_CLASSES[type] || ""} ${className}`} onClick={handleClick} {...props}>
-      {children}
+    <Tag
+      className={`${TYPE_CLASSES[type] || ""} ${className}`}
+      onClick={handleClick}
+      type={Tag === "button" && !props.type ? "button" : props.type}
+      aria-expanded={isOpen}
+      {...props}
+    >
+      {selected?.label ?? children}
       {showArrow && (
         <span className="dropdown-trigger__arrow">
           <img
