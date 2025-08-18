@@ -23,7 +23,7 @@ const DropdownTrigger = ({
   onClick,
   ...props
 }) => {
-  const { isOpen: contextOpen, setIsOpen, selected } = useContext(DropdownContext);
+  const { isOpen: contextOpen, setIsOpen, selected, showError, DROPDOWN_TRIGGER_ERROR_CLASS } = useContext(DropdownContext);
   const isOpen = propOpen ?? contextOpen;
   const handleClick = e => {
     setIsOpen(!isOpen);
@@ -32,7 +32,7 @@ const DropdownTrigger = ({
 
   return (
     <Tag
-      className={`${TYPE_CLASSES[type] || ""} ${className}`}
+      className={`${TYPE_CLASSES[type] || ""} dropdown-trigger ${className} ${showError ? DROPDOWN_TRIGGER_ERROR_CLASS : ""}`}
       onClick={handleClick}
       type={Tag === "button" && !props.type ? "button" : props.type}
       aria-expanded={isOpen}

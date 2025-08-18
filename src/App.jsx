@@ -6,8 +6,8 @@ import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from "./comp
 function App() {
   return (
     <>
-      <Dropdown>
-        <DropdownTrigger showArrow>친구</DropdownTrigger>
+      <Dropdown type="select" errorMsg="입력해">
+        <DropdownTrigger showArrow>선택해주세요.</DropdownTrigger>
         <DropdownContent>
           <DropdownItem type="select" value="option1">
             옵션 1
