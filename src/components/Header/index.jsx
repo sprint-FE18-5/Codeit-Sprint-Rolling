@@ -1,8 +1,12 @@
 import icLogo from "../../assets/icLogo.svg";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { VISIBLE_HEADER_BTN_PATHS } from "../../constants/VISIBLE_PATHS";
 import useIsMatchURL from "../../hooks/useIsMatchURL";
-import { ProfileGroup } from "../ProfileGroup";
+import { CardCountInfo, ProfileGroup } from "../ProfileGroup";
+import { useEffect, useState } from "react";
+import getRecipients from "../../api/getRecipients";
+import getMessages from "../../api/getMessages";
+import Share from "../Share";
 
 const HeaderBase = ({ children }) => {
   return (
@@ -32,9 +36,38 @@ const Header = () => {
   );
 };
 
-const HeaderService = ({ recipient }) => {
-  console.log(recipient);
-  return <HeaderBase></HeaderBase>;
+const HeaderService = () => {
+  const params = useParams();
+  const { id: recipientId } = params;
+  const [recipient, setRecipient] = useState({});
+  const [messages, setMessages] = useState({});
+
+  const profileImages = messages?.results?.map(message => message.profileImageURL);
+
+  useEffect(() => {
+    const getData = async () => {
+      const recipientData = await getRecipients({ recipientId });
+      const messagesData = await getMessages({ recipientId });
+      console.log(recipientData, messagesData);
+      setRecipient(recipientData);
+      setMessages(messagesData);
+    };
+    getData();
+  }, []);
+
+  return (
+    <HeaderBase>
+      <h2>To.{recipient.name}</h2>
+      <div className="">
+        <ProfileGroup profileCount={messages.count} profileImages={profileImages} />
+        <CardCountInfo cardCount={messages.count} />
+        {/* 이모지 더보기 : 드롭다운 완성시 보완예정 */}
+        {/* 이모지 추가 : 드랍다운 완성시 보완예정 */}
+        {/* 공유하기 : 드랍다운 완성시 보완예정 */}
+        <Share />
+      </div>
+    </HeaderBase>
+  );
 };
 
 export { Header, HeaderService };
