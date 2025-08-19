@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from ".";
+import Button from "../RegularButton";
 
 // 토글 영역 스타일
 const CONTAINER_STYLE = "w-[236px] md:w-[244px] h-[40px] bg-gray-100 rounded-[6px] flex";
