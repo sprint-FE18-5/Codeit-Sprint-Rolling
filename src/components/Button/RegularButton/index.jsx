@@ -1,5 +1,5 @@
-import COMMON_BUTTON from "../../../constants/STYLE_BUTTON_COMMON";
-import { SIZE_STYLES, VARIANT_STYLES } from "../../../constants/STYLE_BUTTON_REGULAR";
+import COMMON_BUTTON from "../../../constants/button/BUTTON_COMMON.js";
+import { SIZE_STYLES, VARIANT_STYLES } from "../../../constants/button/BUTTON_REGULAR.js";
 
 const getBtnStyle = ({ variant, size, isSquare }) => {
   const variantStyle = VARIANT_STYLES[variant].style;
