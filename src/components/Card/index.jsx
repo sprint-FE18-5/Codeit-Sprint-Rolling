@@ -12,16 +12,15 @@ import icDelete from "../../assets/icDelete.svg";
  * @param {string} message - 카드에 표시할 메시지
  * @param {string} date - 작성 날짜
  * @param {boolean} isDeleteMode - 삭제 버튼 표시 여부
- * @param {function} onDelete - 삭제 버튼 클릭 시 호출되는 함수 (옵션)
- * @param {function} onClick - 카드 클릭 시 호출되는 함수 (옵션)
- * @param {string|number} cardID - 카드 고유 ID (옵션)
+ * @param {function} onDelete - 삭제 버튼 클릭 시 호출되는 함수
+ * @param {function} onClick - 카드 클릭 시 호출되는 함수 (모달)
+ * @param {string|number} cardID - 카드 고유 ID
  */
-
 // 삭제 버튼 컴포넌트
 const DeleteButton = ({ onClick }) => (
   <Button
     onClick={onClick}
-    className="absolute top-6 right-6 bg-white border border-grayscale-200 flex items-center justify-center w-9 h-9 rounded-lg"
+    className="absolute top-6 right-6"
     aria-label="삭제"
     type="button"
     iconOnly
