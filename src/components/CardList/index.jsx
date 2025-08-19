@@ -17,7 +17,7 @@ import EmojiBadge from "../Badge/EmojiBadge";
 
 // CardList 컴포넌트
 const CardList = ({
-  title = "이름",
+  title = "제목",
   recentMessages = [],
   profileCount = 0,
   cardCount = 0,
