@@ -87,46 +87,46 @@
 }
 /* 폰트 유틸클래스 합성 */
 @layer componets {
-  .Font-28-Bold {
+  .font-28-bold {
     @apply font-pretendard text-28 font-bold;
   }
-  .Font-24-Bold {
+  .font-24-bold {
     @apply font-pretendard text-24 font-bold;
   }
-  .Font-20-Bold {
+  .font-20-bold {
     @apply font-pretendard text-20 font-bold;
   }
-  .Font-18-Bold {
+  .font-18-bold {
     @apply font-pretendard text-18 font-bold;
   }
-  .Font-16-Bold {
+  .font-16-bold {
     @apply font-pretendard text-16 font-bold;
   }
-  .Font-15-Bold {
+  .font-15-bold {
     @apply font-pretendard text-15 font-bold;
   }
-  .Font-14-Bold {
+  .font-14-bold {
     @apply font-pretendard text-14 font-bold;
   }
-  .Font-24-Regular {
+  .font-24-regular {
     @apply font-pretendard text-24;
   }
-  .Font-20-Regular {
+  .font-20-regular {
     @apply font-pretendard text-20;
   }
-  .Font-18-Regular {
+  .font-18-regular {
     @apply font-pretendard text-18;
   }
-  .Font-16-Regular {
+  .font-16-regular {
     @apply font-pretendard text-16;
   }
-  .Font-15-Regular {
+  .font-15-regular {
     @apply font-pretendard text-15;
   }
-  .Font-14-Regular {
+  .font-14-regular {
     @apply font-pretendard text-14;
   }
-  .Font-12-Regular {
+  .font-12-regular {
     @apply font-pretendard text-12;
   }
 }
