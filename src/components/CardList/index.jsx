@@ -50,7 +50,6 @@ const CardList = ({
   ) : null;
 
   const fontColorClass = imgBackground ? "text-white" : "text-grayscale-900";
-  const emojiBgClass = imgBackground ? "bg-black/30" : "";
 
   return (
     <div
@@ -73,11 +72,7 @@ const CardList = ({
         <div className={`w-full h-[1px] bg-black/15 mb-[16px] ${imgBackground ? "bg-white/30" : ""}`} />
         <div className="flex gap-1 md:gap-2 w-full">
           {topEmojis.map(reaction => (
-            <EmojiBadge
-              key={reaction.id ?? reaction.emoji}
-              reaction={reaction}
-              className={emojiBgClass + " " + fontColorClass}
-            />
+            <EmojiBadge key={reaction.id ?? reaction.emoji} reaction={reaction} />
           ))}
         </div>
       </div>
