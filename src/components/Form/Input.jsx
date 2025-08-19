@@ -27,36 +27,14 @@ const INPUT_STYLES = {
  * @param {Object} ref - React ref 객체
  * @example 기본 사용법
  * <Input
- *   value={name}
- *   name="username"
- *   placeholder="이름을 입력해주세요"
- *   onChange={(e) => setName(e.target.value)}
- * />
- *
- * @example 에러 상태
- * <Input
- *   value={name}
- *   name="error-field"
- *   placeholder="이름을 입력해주세요"
- *   onChange={handleChange}
- *   errorMsg="이름을 입력해 주세요"
- * />
- *
- * @example ref 사용
- * const inputRef = useRef();
- * <Input
- *   ref={inputRef}
- *   name="password"
- *   type="password"
- *   placeholder="비밀번호를 입력하세요"
- * />
- *
- * @example 비활성화 상태
- * <Input
- *   name="disabled-field"
  *   type="text"
- *   placeholder="비활성화 테스트"
- *   disabled={true}
+ *   name="name"
+ *   placeholder="이름을 입력해주세요."
+ *   value={value}
+ *   onChange={handleChange}
+ *   onBlur={handleBlur}
+ *   disabled={false}
+ *   errorMsg="이름을 입력해주세요."
  * />
  */
 const Input = forwardRef(
