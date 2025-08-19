@@ -86,7 +86,7 @@
   --text-12: 12px;
 }
 /* 폰트 유틸클래스 합성 */
-@layer componets {
+@layer components {
   .font-28-bold {
     @apply font-pretendard text-28 font-bold;
   }
