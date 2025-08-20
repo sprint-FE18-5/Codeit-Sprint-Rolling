@@ -10,9 +10,9 @@ const DEFAULT_TOGGLE_ICONS = {
 };
 
 const TYPE_CLASSES = {
-  base: "dropdown-trigger relative w-full text-left flex items-center justify-between duration-100 text-[16px] cursor-pointer",
+  base: "dropdown-trigger relative w-full text-left flex items-center justify-between duration-100 text-16 cursor-pointer",
   select:
-    "dropdown-trigger--select h-[50px] pl-[16px] border rounded-[8px] border-[#ccc] text-[#555] text-base leading-6 tracking-[-1%] hover:border-[#555] focus:outline-2 focus:outline-[#555] focus:outline-offset-[-2px] active:border-2 active:border-[#555] active:text-[#181818] disabled:pointer-events-none disabled:bg-gray-100 disabled:border-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed",
+    "dropdown-trigger--select h-[50px] pl-[16px] border rounded-[8px] border-grayscale-300 text-grayscale-500 text-16 leading-6 tracking-[-1%] hover:border-grayscale-500 focus:outline-2 focus:text-grayscale-900 focus:outline-grayscale-500 focus:outline-offset-[-2px] active:border-2 active:border-grayscale-500 active:text-grayscale-900 disabled:pointer-events-none disabled:bg-grayscale-300 disabled:border-grayscale-300 disabled:text-grayscale-400 disabled:cursor-not-allowed",
 };
 
 const DropdownTrigger = ({
@@ -47,7 +47,7 @@ const DropdownTrigger = ({
   const triggerClass = [
     TYPE_CLASSES.base,
     TYPE_CLASSES[triggerType] !== TYPE_CLASSES.base ? TYPE_CLASSES[triggerType] : "",
-    isActived ? "border-2 border-gray-600" : "",
+    isActived ? "border-2 border-grayscale-500 text-grayscale-900" : "",
     className,
     showError ? DROPDOWN_TRIGGER_ERROR_CLASS : "",
   ]
@@ -66,7 +66,7 @@ const DropdownTrigger = ({
         <span
           className={[
             "dropdown-trigger__arrow w-[36px] h-[36px] flex items-center justify-center",
-            props.disabled ? "text-[#999]" : "",
+            props.disabled ? "text-grayscale-400" : "",
           ]
             .filter(Boolean)
             .join(" ")}

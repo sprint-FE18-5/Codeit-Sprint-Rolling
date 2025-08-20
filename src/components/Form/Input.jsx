@@ -2,14 +2,15 @@ import { forwardRef } from "react";
 
 // Input 스타일
 const INPUT_STYLES = {
-  base: "w-full h-[50px] px-[16px] rounded-[8px] text-base leading-6 tracking-[-1%] focus:outline-2 focus:outline-offset-[-2px] text-[#181818] placeholder:text-[#555]",
+  base: "w-full h-[50px] px-[16px] rounded-[8px] text-16 leading-6 tracking-[-1%] focus:outline-2 focus:outline-offset-[-2px] text-grayscale-900 placeholder:text-grayscale-500 duration-100",
   normal:
-    "border border-[#cccccc] hover:border-gray-600 focus:outline-gray-600 focus:placeholder:text-[#181818] active:border-2 active:border-gray-600 active:placeholder:text-[#181818]",
-  active: "border-2 border-gray-600 hover:border-gray-600 focus:outline-gray-600 placeholder:text-[#181818]",
+    "border border-grayscale-300 hover:border-grayscale-500 focus:outline-grayscale-500 focus:placeholder:text-grayscale-900 active:border-2 active:border-grayscale-500 text-grayscale-900 active:placeholder:text-grayscale-900",
+  active:
+    "border-2 border-grayscale-500 hover:border-grayscale-500 focus:outline-grayscale-500 placeholder:text-grayscale-900",
   error:
-    "border border-[#DC3A3A] hover:border-[#DC3A3A] focus:outline-[#DC3A3A] placeholder:text-[#181818] active:border-2 active:border-[#DC3A3A]",
+    "border border-error hover:border-error focus:outline-error placeholder:text-grayscale-900 active:border-2 active:border-error",
   disabled:
-    "pointer-events-none text-[#999999] bg-[#f6f6f6] border border-[#cccccc] cursor-not-allowed placeholder:text-[#999999]",
+    "pointer-events-none text-grayscale-400 bg-grayscale-100 border border-grayscale-300 cursor-not-allowed disabled:placeholder:text-grayscale-400",
 };
 
 /**
@@ -81,9 +82,7 @@ const Input = forwardRef(
           }`}
           {...props}
         />
-        {errorMsg && (
-          <span className="mt-[4px] text-[12px] leading-[18px] tracking-[-0.5px] text-[#DC3A3A]">{errorMsg}</span>
-        )}
+        {errorMsg && <span className="mt-[4px] text-12 tracking-[-0.5px] text-error">{errorMsg}</span>}
       </div>
     );
   },
