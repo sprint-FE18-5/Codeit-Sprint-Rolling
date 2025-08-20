@@ -1,6 +1,6 @@
 import icShare from "../../assets/icShare.svg";
 import useToast from "../../hooks/useToast";
-import Button from "../Button";
+import RegularButton from "../Button/RegularButton";
 import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "../Dropdown";
 
 const Share = () => {
@@ -19,9 +19,9 @@ const Share = () => {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button variant="outlinedIcon" size={36} width={56}>
+        <RegularButton variant="outlinedIcon" size={36} width={"56px"}>
           <img src={icShare} alt="공유하기 버튼 이미지" />
-        </Button>
+        </RegularButton>
       </DropdownTrigger>
       <div className="w-[140px]">
         <DropdownContent>

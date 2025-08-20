@@ -1,6 +1,6 @@
 import EmojiPicker from "emoji-picker-react";
 import icEmoji from "../../assets/icEmoji.svg";
-import Button from "../Button";
+import RegularButton from "../Button/RegularButton";
 import { useState } from "react";
 import postReactions from "../../api/postReactions";
 import { useParams } from "react-router-dom";
@@ -23,12 +23,12 @@ const Picker = ({ setReactions, setTopReactions }) => {
   };
   return (
     <div className="relative">
-      <Button variant="outlinedIcon" size={36} width={88} onClick={() => setIsOpen(!isOpen)}>
+      <RegularButton variant="outlinedIcon" size={36} width={"88px"} onClick={() => setIsOpen(!isOpen)}>
         <div className="flex gap-1 whitespace-nowrap ">
           <img src={icEmoji} alt="이모지 아이콘" />
           <span>추가</span>
         </div>
-      </Button>
+      </RegularButton>
       <div className="absolute top-11">{isOpen && <EmojiPicker height={400} onEmojiClick={handleClickEmoji} />}</div>
     </div>
   );

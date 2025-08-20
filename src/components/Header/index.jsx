@@ -11,8 +11,7 @@ import Picker from "../Picker";
 import getReactions from "../../api/getReactions";
 import EmojiBadge from "../Badge/EmojiBadge";
 import { Dropdown, DropdownContent, DropdownTrigger } from "../Dropdown";
-import Button from "../Button";
-
+import RegularButton from "../Button/RegularButton";
 const HeaderBase = ({ children }) => {
   return (
     <div className="border-b border-[#EDEDED] py-[11px] h-[65px]">
@@ -33,9 +32,9 @@ const Header = () => {
       </Link>
 
       {isMatchURL && (
-        <Button variant="outlinedIcon" size={40} width={157} onClick={() => navigate("/post")}>
+        <RegularButton variant="outlinedIcon" size={40} width={"157px"} onClick={() => navigate("/post")}>
           <span className="font-16-bold">롤링 페이퍼 만들기</span>
-        </Button>
+        </RegularButton>
       )}
     </HeaderBase>
   );

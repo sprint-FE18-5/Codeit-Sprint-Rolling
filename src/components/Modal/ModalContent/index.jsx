@@ -1,7 +1,6 @@
 import RelationshipBadge from "../../Badge/RelationshipBadge";
-import Button from "../../Button";
 import icProfile from "../../../assets/icProfile.svg";
-
+import RegularButton from "../../Button/RegularButton";
 /**
  * 모달 내부 콘텐츠 컴포넌트(카드 관련 내용)
  *
@@ -35,9 +34,9 @@ const ModalContent = ({ profileImg = "", name = "", relationship = "지인", mes
       <div className="md:text-[18px] text-[15px] text-gray-700 pt-[16px] border-t border-gray-200 break-all max-h-[256px] min-h-[120px] overflow-y-auto">
         {message}
       </div>
-      <Button variant="primary" size={40} width={120} className="m-auto" onClick={onClose}>
+      <RegularButton variant="primary" size={40} width={"120px"} className="m-auto" onClick={onClose}>
         확인
-      </Button>
+      </RegularButton>
     </div>
   );
 };
