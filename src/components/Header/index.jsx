@@ -57,12 +57,13 @@ const HeaderService = () => {
 
   return (
     <HeaderBase>
-      <h2 className="flex-1">To.{recipient.name}</h2>
-      <div className="flex-2 flex justify-between items-center">
+      <h2 className="">To.{recipient.name}</h2>
+      <div className=" flex items-center">
         <div className="flex items-center gap-[11px]">
           <ProfileGroup profileCount={messages.count} profileImages={profileImages} />
           <CardCountInfo cardCount={messages.count} />
         </div>
+        <div className="border-r h-[28px] w-[28px] text-gray-200"></div>
         <div>
           {/* 이모지 더보기 : 드롭다운 완성시 보완예정 */}
           {/* 이모지 추가 : 드랍다운 완성시 보완예정 */}
