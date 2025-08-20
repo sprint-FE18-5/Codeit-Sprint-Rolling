@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import DropdownContext from "./DropdownContext";
 
-const DROPDOWN_ERROR_CLASS =
-  "dropdown-error text-[#DC3A3A] block text-[12px] line-height-[18px] tracking-[-.5px] mt-[5px]";
-const DROPDOWN_TRIGGER_ERROR_CLASS = "border !border-[#DC3A3A]";
+const DROPDOWN_ERROR_CLASS = "dropdown-error text-error block text-12 mt-[5px]";
+const DROPDOWN_TRIGGER_ERROR_CLASS = "border !border-error text-grayscale-900";
 const TYPE_CLASSES = {
   base: "dropdown relative inline-block align-top",
   select: "dropdown-select max-w-[320px] w-full",
