@@ -1,8 +1,12 @@
-import { useParams } from "react-router-dom";
+import { Input } from "@headlessui/react";
 
 const PostPage = () => {
-  const { id } = useParams();
-  return <div></div>;
+  return (
+    <div>
+      To.
+      <Input placeholder="ddd" />
+    </div>
+  );
 };
 
 export default PostPage;
