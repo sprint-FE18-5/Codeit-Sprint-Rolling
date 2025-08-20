@@ -25,12 +25,8 @@ const Share = () => {
       </DropdownTrigger>
       <div className="w-[140px]">
         <DropdownContent>
-          <DropdownItem as="button">
-            <button>카카오톡 공유</button>
-          </DropdownItem>
-          <DropdownItem>
-            <button onClick={handleClickShareURL}>URL 공유</button>
-          </DropdownItem>
+          <DropdownItem>카카오톡 공유</DropdownItem>
+          <DropdownItem onClick={handleClickShareURL}>URL 공유</DropdownItem>
         </DropdownContent>
       </div>
     </Dropdown>

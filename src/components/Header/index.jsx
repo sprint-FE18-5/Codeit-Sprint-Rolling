@@ -7,6 +7,10 @@ import { useEffect, useState } from "react";
 import getRecipients from "../../api/getRecipients";
 import getMessages from "../../api/getMessages";
 import Share from "../Share";
+import Picker from "../Picker";
+import getReactions from "../../api/getReactions";
+import EmojiBadge from "../Badge/EmojiBadge";
+import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "../Dropdown";
 
 const HeaderBase = ({ children }) => {
   return (
@@ -41,16 +45,19 @@ const HeaderService = () => {
   const { id: recipientId } = params;
   const [recipient, setRecipient] = useState({});
   const [messages, setMessages] = useState({});
-
+  const [reactions, setReactions] = useState({});
+  const [topReactions, setTopReactions] = useState([]);
   const profileImages = messages?.results?.map(message => message.profileImageURL);
 
   useEffect(() => {
     const getData = async () => {
       const recipientData = await getRecipients({ recipientId });
       const messagesData = await getMessages({ recipientId });
-      console.log(recipientData, messagesData);
+      const reactionsData = await getReactions({ recipientId });
       setRecipient(recipientData);
       setMessages(messagesData);
+      setReactions(reactionsData);
+      setTopReactions(recipientData.topReactions);
     };
     getData();
   }, []);
@@ -63,11 +70,30 @@ const HeaderService = () => {
           <ProfileGroup profileCount={messages.count} profileImages={profileImages} />
           <CardCountInfo cardCount={messages.count} />
         </div>
-        <div className="border-r h-[28px] w-[28px] text-gray-200"></div>
-        <div>
-          {/* 이모지 더보기 : 드롭다운 완성시 보완예정 */}
-          {/* 이모지 추가 : 드랍다운 완성시 보완예정 */}
-          {/* 공유하기 : 드랍다운 완성시 보완예정 */}
+        <span className="w-px h-[28px] bg-[#EEEEEE] mx-[28px]"></span>
+        <div className="flex items-center gap-[8px]">
+          <Dropdown>
+            <DropdownTrigger showArrow>
+              <div className="flex gap-[8px]">
+                {topReactions?.map(reaction => (
+                  <EmojiBadge reaction={reaction} />
+                ))}
+              </div>
+            </DropdownTrigger>
+            <div className="w-[312px] absolute">
+              <DropdownContent>
+                <div className="p-[24px] grid grid-cols-4 gap-[10px]">
+                  {reactions?.results?.map(reaction => (
+                    <div className="w-1/4">
+                      <EmojiBadge reaction={reaction} />
+                    </div>
+                  ))}
+                </div>
+              </DropdownContent>
+            </div>
+          </Dropdown>
+          <Picker setReactions={setReactions} setTopReactions={setTopReactions} />
+          <span className="w-px h-[28px] bg-[#EEEEEE] mx-[7px]"></span>
           <Share />
         </div>
       </div>
