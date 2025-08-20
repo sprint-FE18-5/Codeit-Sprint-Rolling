@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom";
 import { Header, HeaderService } from "../Header";
 import { VISIBLE_HEADER_SERVICE_PATHS } from "../../constants/VISIBLE_PATHS";
 import useIsMatchURL from "../../hooks/useIsMatchURL";

@@ -1,5 +1,5 @@
 import icLogo from "../../assets/icLogo.svg";
-import { Link, useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { VISIBLE_HEADER_BTN_PATHS } from "../../constants/VISIBLE_PATHS";
 import useIsMatchURL from "../../hooks/useIsMatchURL";
 import { CardCountInfo, ProfileGroup } from "../ProfileGroup";
@@ -10,7 +10,8 @@ import Share from "../Share";
 import Picker from "../Picker";
 import getReactions from "../../api/getReactions";
 import EmojiBadge from "../Badge/EmojiBadge";
-import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "../Dropdown";
+import { Dropdown, DropdownContent, DropdownTrigger } from "../Dropdown";
+import Button from "../Button";
 
 const HeaderBase = ({ children }) => {
   return (
@@ -32,9 +33,9 @@ const Header = () => {
       </Link>
 
       {isMatchURL && (
-        <button className="Button Outlined-40" onClick={() => navigate("/post")}>
-          롤링 페이퍼 만들기
-        </button>
+        <Button variant="outlinedIcon" size={40} width={157} onClick={() => navigate("/post")}>
+          <span className="font-16-bold">롤링 페이퍼 만들기</span>
+        </Button>
       )}
     </HeaderBase>
   );
@@ -64,7 +65,7 @@ const HeaderService = () => {
 
   return (
     <HeaderBase>
-      <h2 className="">To.{recipient.name}</h2>
+      <h2 className="font-28-bold text-gray-800">To.{recipient.name}</h2>
       <div className=" flex items-center">
         <div className="flex items-center gap-[11px]">
           <ProfileGroup profileCount={messages.count} profileImages={profileImages} />
