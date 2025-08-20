@@ -2,7 +2,7 @@ import { useContext } from "react";
 import DropdownContext from "./DropdownContext";
 
 const TYPE_CLASSES = {
-  base: "dropdown-item relative text-left block w-full min-h-[50px] px-4 py-3 text-base leading-[26px] tracking-[-0.01em]  text-[#181818] hover:bg-[#f6f6f6] duration-100 cursor-pointer",
+  base: "dropdown-item relative text-left block w-full min-h-[50px] px-4 py-3 text-16 leading-[26px] tracking-[-0.01em] text-grayscale-900 hover:bg-grayscale-100 duration-100 cursor-pointer",
   select: "dropdown-item-select",
 };
 
