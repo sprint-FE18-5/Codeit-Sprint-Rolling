@@ -57,14 +57,18 @@ const HeaderService = () => {
 
   return (
     <HeaderBase>
-      <h2>To.{recipient.name}</h2>
-      <div className="">
-        <ProfileGroup profileCount={messages.count} profileImages={profileImages} />
-        <CardCountInfo cardCount={messages.count} />
-        {/* 이모지 더보기 : 드롭다운 완성시 보완예정 */}
-        {/* 이모지 추가 : 드랍다운 완성시 보완예정 */}
-        {/* 공유하기 : 드랍다운 완성시 보완예정 */}
-        <Share />
+      <h2 className="flex-1">To.{recipient.name}</h2>
+      <div className="flex-2 flex justify-between items-center">
+        <div className="flex items-center gap-[11px]">
+          <ProfileGroup profileCount={messages.count} profileImages={profileImages} />
+          <CardCountInfo cardCount={messages.count} />
+        </div>
+        <div>
+          {/* 이모지 더보기 : 드롭다운 완성시 보완예정 */}
+          {/* 이모지 추가 : 드랍다운 완성시 보완예정 */}
+          {/* 공유하기 : 드랍다운 완성시 보완예정 */}
+          <Share />
+        </div>
       </div>
     </HeaderBase>
   );
