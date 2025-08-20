@@ -1,4 +1,5 @@
 import { useState } from "react";
+import COMMON_BUTTON from "../../../constants/button/BUTTON_COMMON";
 import { TOGGLE_CONTAINER, getSelectStyle } from "../../../constants/button/BUTTON_TOGGLE";
 import RegularButton from "../RegularButton";
 
@@ -16,13 +17,15 @@ import RegularButton from "../RegularButton";
 const ToggleButton = ({ className = "", toggleProps = {}, colorBtnProps = {}, imageBtnProps = {} }) => {
   const [selectedType, setSelectedType] = useState("color");
 
+  const commonBtnStyle = COMMON_BUTTON;
+  const toggleBtnStyle = TOGGLE_CONTAINER;
   const colorBtnStyle = getSelectStyle(selectedType === "color");
   const imageBtnStyle = getSelectStyle(selectedType === "image");
 
   const handleBtnClick = type => setSelectedType(type);
 
   return (
-    <div className={`${TOGGLE_CONTAINER} ${className}`} {...toggleProps}>
+    <div className={`${commonBtnStyle} ${toggleBtnStyle} ${className}`} {...toggleProps}>
       <RegularButton {...colorBtnStyle} {...colorBtnProps} onClick={() => handleBtnClick("color")}>
         컬러
       </RegularButton>

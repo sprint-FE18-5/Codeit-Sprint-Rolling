@@ -1,22 +1,5 @@
 import COMMON_BUTTON from "../../../constants/button/BUTTON_COMMON.js";
-import { SIZE_STYLES, VARIANT_STYLES } from "../../../constants/button/BUTTON_REGULAR.js";
-
-const getBtnStyle = ({ variant, size, isSquare }) => {
-  const variantStyle = VARIANT_STYLES[variant].style;
-  let sizeStyle = VARIANT_STYLES[variant].size[size] || SIZE_STYLES[40];
-
-  // isSquare이면, px를 py와 같은 값으로 변경
-  if (isSquare) {
-    const pyVal = sizeStyle.match(/py-\[(\d+)px\]/)[1];
-    sizeStyle = sizeStyle.replace(/px-\[\d+px\]/, `px-[${pyVal}px]`);
-  }
-
-  const btnStyle = [variantStyle.base, variantStyle.hover, variantStyle.active, variantStyle.focus, sizeStyle]
-    .filter(Boolean)
-    .join(" ");
-
-  return btnStyle;
-};
+import { getRegularBtnStyle } from "../../../constants/button/BUTTON_REGULAR.js";
 
 /**
  * 공용 직사각형 버튼 컴포넌트
@@ -44,7 +27,7 @@ const RegularButton = ({
   ...restProps
 }) => {
   const commonBtnStyle = COMMON_BUTTON;
-  const regularBtnStyle = getBtnStyle({ variant, size, isSquare });
+  const regularBtnStyle = getRegularBtnStyle({ variant, size, isSquare });
 
   return (
     <button className={`${commonBtnStyle} ${regularBtnStyle} ${className}`} style={{ width, height }} {...restProps}>

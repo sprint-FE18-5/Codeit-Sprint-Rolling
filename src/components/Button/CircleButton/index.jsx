@@ -1,5 +1,5 @@
 import COMMON_BUTTON from "../../../constants/button/BUTTON_COMMON.js";
-import CIRCLE_BUTTON from "../../../constants/button/BUTTON_CIRCLE.js";
+import { getCircleBtnStyle } from "../../../constants/button/BUTTON_CIRCLE.js";
 
 /**
  * 원형 추가 버튼 컴포넌트
@@ -16,10 +16,7 @@ import CIRCLE_BUTTON from "../../../constants/button/BUTTON_CIRCLE.js";
  */
 const CircleButton = ({ className = "", width = undefined, height = undefined, children, onClick, ...restProps }) => {
   const commonBtnStyle = COMMON_BUTTON;
-  const { style: variantStyle, size: sizeStyle } = CIRCLE_BUTTON;
-  const circleBtnStyle = [variantStyle.base, variantStyle.hover, variantStyle.active, variantStyle.focus, sizeStyle]
-    .filter(Boolean)
-    .join(" ");
+  const circleBtnStyle = getCircleBtnStyle();
 
   return (
     <button

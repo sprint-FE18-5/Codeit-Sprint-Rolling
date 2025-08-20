@@ -1,5 +1,5 @@
 import COMMON_BUTTON from "../../../constants/button/BUTTON_COMMON.js";
-import ARROW_BUTTON from "../../../constants/button/BUTTON_ARROW.js";
+import { getArrowBtnStyle } from "../../../constants/button/BUTTON_ARROW.js";
 import icArrow from "../../../assets/icArrow.svg";
 
 /**
@@ -26,10 +26,7 @@ const ArrowButton = ({
   ...restProps
 }) => {
   const commonBtnStyle = COMMON_BUTTON;
-  const { style: variantStyle, size: sizeStyle } = ARROW_BUTTON;
-  const arrowBtnStyle = [variantStyle.base, variantStyle.hover, variantStyle.active, variantStyle.focus, sizeStyle]
-    .filter(Boolean)
-    .join(" ");
+  const arrowBtnStyle = getArrowBtnStyle();
 
   // 화살표 방향(direction)에 따라 icon 회전 & margin 값 조정
   const DIR_PROPS = {
