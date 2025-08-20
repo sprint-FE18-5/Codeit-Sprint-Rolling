@@ -132,49 +132,49 @@
     @apply font-pretendard text-12;
   }
 
-  /* sm (640px 이상)에서의 폰트  */
-  @media (min-width: 640px) {
-    .sm\:font-28-bold {
+  /* md (768px 이상)에서의 폰트  */
+  @media (min-width: 768px) {
+    .md\:font-28-bold {
       font-family: "Pretendard";
       font-size: 28px;
       font-weight: bold;
     }
 
-    .sm\:font-24-bold {
+    .md\:font-24-bold {
       font-family: "Pretendard";
       font-size: 24px;
       font-weight: bold;
     }
 
-    .sm\:font-20-bold {
+    .md\:font-20-bold {
       font-family: "Pretendard";
       font-size: 20px;
       font-weight: bold;
     }
 
-    .sm\:font-18-bold {
+    .md\:font-18-bold {
       font-family: "Pretendard";
       font-size: 18px;
       font-weight: bold;
     }
 
-    .sm\:font-16-bold {
+    .md\:font-16-bold {
       font-family: "Pretendard";
       font-size: 16px;
       font-weight: bold;
     }
 
-    .sm\:font-24-regular {
+    .md\:font-24-regular {
       font-family: "Pretendard";
       font-size: 24px;
       font-weight: normal;
     }
-    .sm\:font-20-regular {
+    .md\:font-20-regular {
       font-family: "Pretendard";
       font-size: 20px;
       font-weight: normal;
     }
-    .sm\:font-18-regular {
+    .md\:font-18-regular {
       font-family: "Pretendard";
       font-size: 18px;
       font-weight: normal;
