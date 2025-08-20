@@ -1,1 +1,183 @@
 @import "tailwindcss";
+/* 폰트등록 */
+@font-face {
+  font-family: "Pretendard";
+  src: url("../src/utils/Pretendard-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../src/utils/Pretendard-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* 색상토큰 등록 */
+
+  /* purple */
+  --color-purple-100: #f8f0ff;
+  --color-purple-200: #ecd9ff;
+  --color-purple-300: #dcb9ff;
+  --color-purple-400: #c894fd;
+  --color-purple-500: #ab57ff;
+  --color-purple-600: #9935ff;
+  --color-purple-700: #861dee;
+  --color-purple-800: #6e0ad1;
+  --color-purple-900: #5603a7;
+
+  /* beige */
+  --color-beige-100: #fff0d6;
+  --color-beige-200: #ffe2ad;
+  --color-beige-300: #ffc583;
+  --color-beige-400: #ffae65;
+  --color-beige-500: #ff8832;
+
+  /* blue */
+  --color-blue-100: #e2f5ff;
+  --color-blue-200: #b1e4ff;
+  --color-blue-300: #7cd2ff;
+  --color-blue-400: #34b9ff;
+  --color-blue-500: #00a2fe;
+
+  /* green */
+  --color-green-100: #e4fbdc;
+  --color-green-200: #d0f5c3;
+  --color-green-300: #9be282;
+  --color-green-400: #60cf37;
+  --color-green-500: #2ba600;
+
+  /* grayscale */
+  --color-grayscale-100: #f6f6f6;
+  --color-grayscale-200: #eeeeee;
+  --color-grayscale-300: #cccccc;
+  --color-grayscale-400: #999999;
+  --color-grayscale-500: #555555;
+  --color-grayscale-600: #4a4a4a;
+  --color-grayscale-700: #3a3a3a;
+  --color-grayscale-800: #2b2b2b;
+  --color-grayscale-900: #181818;
+
+  /* white */
+  --color-white: #ffffff;
+
+  /* black */
+  --color-black: #000000;
+
+  /* error */
+  --color-error: #dc3a3a;
+
+  /* surface */
+  --color-surface: #f6f8ff;
+
+  /* 폰트토큰 등록 */
+
+  --font-pretendard: "Pretendard";
+  --text-28: 28px;
+  --text-24: 24px;
+  --text-20: 20px;
+  --text-18: 18px;
+  --text-16: 16px;
+  --text-15: 15px;
+  --text-14: 14px;
+  --text-12: 12px;
+}
+/* 폰트 유틸클래스 합성 */
+@layer utilities {
+  /* 기본 폰트 */
+
+  .font-28-bold {
+    @apply font-pretendard text-28 font-bold;
+  }
+  .font-24-bold {
+    @apply font-pretendard text-24 font-bold;
+  }
+  .font-20-bold {
+    @apply font-pretendard text-20 font-bold;
+  }
+  .font-18-bold {
+    @apply font-pretendard text-18 font-bold;
+  }
+  .font-16-bold {
+    @apply font-pretendard text-16 font-bold;
+  }
+  .font-15-bold {
+    @apply font-pretendard text-15 font-bold;
+  }
+  .font-14-bold {
+    @apply font-pretendard text-14 font-bold;
+  }
+  .font-24-regular {
+    @apply font-pretendard text-24;
+  }
+  .font-20-regular {
+    @apply font-pretendard text-20;
+  }
+  .font-18-regular {
+    @apply font-pretendard text-18;
+  }
+  .font-16-regular {
+    @apply font-pretendard text-16;
+  }
+  .font-15-regular {
+    @apply font-pretendard text-15;
+  }
+  .font-14-regular {
+    @apply font-pretendard text-14;
+  }
+  .font-12-regular {
+    @apply font-pretendard text-12;
+  }
+
+  /* md (768px 이상)에서의 폰트  */
+  @media (min-width: 768px) {
+    .md\:font-28-bold {
+      font-family: "Pretendard";
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .md\:font-24-bold {
+      font-family: "Pretendard";
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .md\:font-20-bold {
+      font-family: "Pretendard";
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .md\:font-18-bold {
+      font-family: "Pretendard";
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .md\:font-16-bold {
+      font-family: "Pretendard";
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .md\:font-24-regular {
+      font-family: "Pretendard";
+      font-size: 24px;
+      font-weight: normal;
+    }
+    .md\:font-20-regular {
+      font-family: "Pretendard";
+      font-size: 20px;
+      font-weight: normal;
+    }
+    .md\:font-18-regular {
+      font-family: "Pretendard";
+      font-size: 18px;
+      font-weight: normal;
+    }
+  }
+}
