@@ -32,6 +32,7 @@ const DropdownTrigger = ({
     showError,
     DROPDOWN_TRIGGER_ERROR_CLASS,
     type: contextType,
+    isUserSelected,
   } = useContext(DropdownContext);
   const isOpen = propOpen ?? contextOpen;
   const handleClick = e => {
@@ -43,7 +44,7 @@ const DropdownTrigger = ({
   const triggerType = contextType || type;
   // 항상 base 스타일 포함, 타입별 스타일 추가
   // 셀렉트 타입에서 옵션이 선택된 경우 actived
-  const isActived = triggerType === "select" && selected;
+  const isActived = triggerType === "select" && selected && isUserSelected;
   const triggerClass = [
     TYPE_CLASSES.base,
     TYPE_CLASSES[triggerType] !== TYPE_CLASSES.base ? TYPE_CLASSES[triggerType] : "",

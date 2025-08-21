@@ -8,10 +8,11 @@ const TYPE_CLASSES = {
   select: "dropdown-select max-w-[320px] w-full",
 };
 
-const Dropdown = ({ children, type = "base", errorMsg }) => {
+const Dropdown = ({ children, type = "base", errorMsg, defaultValue }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(defaultValue);
   const [showError, setShowError] = useState(false);
+  const [isUserSelected, setIsUserSelected] = useState(false);
 
   // 외부 클릭 시 드롭다운 닫기 ref, 에러 메시지 관리
   const dropdownRef = useRef(null);
@@ -34,6 +35,13 @@ const Dropdown = ({ children, type = "base", errorMsg }) => {
     };
   }, [isOpen, type, selected]);
 
+  // defaultValue prop이 변경될 때 selected 동기화
+  useEffect(() => {
+    if (defaultValue !== selected) {
+      setSelected(defaultValue);
+    }
+  }, [defaultValue]);
+
   useEffect(() => {
     if (type === "select" && selected) {
       setShowError(false);
@@ -49,6 +57,8 @@ const Dropdown = ({ children, type = "base", errorMsg }) => {
     showError, // 트리거에서 에러 스타일 적용용
     DROPDOWN_TRIGGER_ERROR_CLASS,
     type, // Context로 type 전달
+    isUserSelected,
+    setIsUserSelected,
   };
 
   return (

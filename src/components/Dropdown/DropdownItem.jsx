@@ -16,13 +16,14 @@ const DropdownItem = ({
   ...props
 }) => {
   //드롭다운 컨텍스트에서 상태, 함수 가져옴
-  const { setSelected, setIsOpen, type: contextType } = useContext(DropdownContext);
+  const { setSelected, setIsOpen, setIsUserSelected, type: contextType } = useContext(DropdownContext);
   // 컨텍스트에 타입이 있으면 우선 적용, 없으면 프롭 타입 사용
   const itemType = contextType || type;
 
   const handleClick = e => {
     if (itemType === "select") {
       setSelected({ value: value ?? children, label: children });
+      setIsUserSelected?.(true);
     }
     setIsOpen(false);
     onClick?.(itemType === "select" ? value ?? children : children, e);

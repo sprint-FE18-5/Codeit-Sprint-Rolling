@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
 import PostPage from "./pages/PostPage";
+import PostMessagePage from "./pages/PostMessage";
+
 function App() {
   return (
     <>
@@ -14,7 +16,7 @@ function App() {
             <Route index element={<PostPage />} />
             <Route path=":id">
               <Route index element={/* 생성된 롤링페이퍼 페이지 */ null} />
-              <Route path="message" element={/* 롤링페이퍼 메세지 보내기 페이지 */ null} />
+              <Route path="message" element={<PostMessagePage />} />
               <Route path="edit" element={/* 롤링페이퍼 수정 페이지 */ null} />
             </Route>
           </Route>
