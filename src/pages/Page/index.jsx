@@ -1,4 +1,4 @@
-import usePageTitle from "../hooks/usePageTitle";
+import usePageTitle from "../../hooks/usePageTitle";
 
 /**
  * 페이지 타이틀 설정 컴포넌트
