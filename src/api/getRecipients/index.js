@@ -8,7 +8,7 @@ const getRecipients = async ({ recipientId, limit, offset, sort } = {}) => {
     const { data } = await instance.get(`recipients/${recipientId}/`, { params: { limit, offset, sort } });
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("dd", error);
   }
 };
 

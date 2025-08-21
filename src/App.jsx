@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
 import PostPage from "./pages/PostPage";
+import NotFoundPage from "./pages/NotFoundPage";
 function App() {
   return (
     <>
@@ -19,6 +20,8 @@ function App() {
             </Route>
           </Route>
         </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
