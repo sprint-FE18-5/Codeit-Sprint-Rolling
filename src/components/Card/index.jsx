@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import RelationshipBadge from "../Badge/RelationshipBadge";
 import CircleButton from "../Button/CircleButton";
-import Button from "../Button";
+import RegularButton from "../Button/RegularButton";
+import icPlus from "../../assets/icPlus.svg";
 import icDelete from "../../assets/icDelete.svg";
 
 /**
@@ -18,18 +19,18 @@ import icDelete from "../../assets/icDelete.svg";
  */
 // 삭제 버튼 컴포넌트
 const DeleteButton = ({ onClick }) => (
-  <Button
+  <RegularButton
     onClick={onClick}
     className="absolute top-6 right-6"
     aria-label="삭제"
     type="button"
-    iconOnly
     variant="outlinedIcon"
     size={36}
-    width={36}
+    width="36px"
+    isSquare={true}
   >
     <img src={icDelete} alt="삭제" />
-  </Button>
+  </RegularButton>
 );
 
 // 카드 컴포넌트
@@ -86,7 +87,9 @@ const AddCard = ({ id }) => {
 
   return (
     <div className="bg-white rounded-2xl shadow-sm card-size flex items-center justify-center transition-all">
-      <CircleButton onClick={handleClick} />
+      <CircleButton onClick={handleClick}>
+        <img src={icPlus} alt="카드 추가" />
+      </CircleButton>
     </div>
   );
 };
