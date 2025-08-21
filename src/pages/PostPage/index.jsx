@@ -1,31 +1,35 @@
 import { Input } from "@headlessui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToggleButton from "../../components/Button/ToggleButton";
 import { ThemeOption, ThemeOptionGroup } from "../../components/Option/ThemeOption";
 import { COLOR_OPTIONS, IMAGE_OPTIONS } from "../../constants/OPTIONS";
 import RegularButton from "../../components/Button/RegularButton";
 
 const PostPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    backgroundColor: COLOR_OPTIONS[0],
-    backgroundImageURL: IMAGE_OPTIONS[0],
-  });
+  const [name, setName] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState(COLOR_OPTIONS[0]);
+  const [backgroundImageURL, setBackgroundImageURL] = useState(IMAGE_OPTIONS[0]);
+
   const [selectedType, setSelectedType] = useState("color");
 
   const isRenderColor = selectedType === "color" ? true : false;
 
+  useEffect(() => {
+    // selectedType : color 면 img 안보내기
+    // selectedType : image 면 color, img 다보내기
+  }, []);
+
   return (
     <form className="form-container flex flex-col gap-[50px]">
       <div className="flex flex-col gap-[12px]">
-        <h3 className="text-gray-900 font-24-bold">To.</h3>
+        <h3 className="text-gray-900 font-24-bold">To. {name}</h3>
         <Input
-          placeholder="ddd"
+          placeholder="받는 사람 이름을 입력해 주세요"
           type="text"
           className={"border border-gray-300 rounded-[8px] h-[50px] px-[16px] py-[12px] font-16-regular text-gray-500"}
-          onChange
-          value
-          errorMsg
+          onChange={e => setName(e.target.value)}
+          value={name}
+          errorMsg={"테스트"}
         />
       </div>
 
@@ -49,8 +53,8 @@ const PostPage = () => {
                 label={color}
                 name="theme-color"
                 value={color}
-                checked={formData.backgroundColor === color}
-                onChange={() => setFormData(prev => ({ ...prev, backgroundColor: color }))}
+                checked={backgroundColor === color}
+                onChange={setBackgroundColor}
               />
             ))
           : IMAGE_OPTIONS.map(url => (
@@ -59,8 +63,8 @@ const PostPage = () => {
                 optionType="image"
                 name="theme-image"
                 value={url}
-                checked={formData.backgroundImageURL === url}
-                onChange={() => setFormData(prev => ({ ...prev, backgroundImageURL: url }))}
+                checked={backgroundImageURL === url}
+                onChange={setBackgroundImageURL}
               />
             ))}
       </ThemeOptionGroup>
