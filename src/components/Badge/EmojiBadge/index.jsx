@@ -1,9 +1,11 @@
 const EmojiBadge = ({ reaction }) => {
+  const MAX_COUNT = 99;
+
   return (
-    <div className="flex-1 min-w-0 inline-flex rounded-[32px] w-[66px] px-[12px] py-[8px] bg-black/54 items-center justify-center gap-[2px] text-white">
-      <span className="text-14 md:text-16">{reaction.emoji}</span>
-      <span className={reaction.count > 99 ? "text-14" : "text-16"}>
-        {reaction.count > 99 ? "99+" : reaction.count}
+    <div className="inline-flex rounded-[32px] px-[8px] md:px-[12px] py-[6px] md:py-[8px] bg-black/54 items-center justify-center gap-[2px] text-white leading-[20px]">
+      <span className="font-14-regular md:font-16-regular">{reaction.emoji}</span>
+      <span className={reaction.count > MAX_COUNT ? "font-14-regular" : "font-16-regular"}>
+        {reaction.count > MAX_COUNT ? `${MAX_COUNT}+` : reaction.count}
       </span>
     </div>
   );
