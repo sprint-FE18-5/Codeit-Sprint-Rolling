@@ -1,9 +1,7 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
 import PostPage from "./pages/PostPage";
-import ListPage from "./pages/ListPage";
-
 function App() {
   return (
     <>
@@ -13,9 +11,9 @@ function App() {
           <Route path="/list" element={<ListPage />} />
 
           <Route path="/post">
-            <Route index element={/* 롤링페이퍼 생성페이지 */ null} />
+            <Route index element={<PostPage />} />
             <Route path=":id">
-              <Route index element={<PostPage />} />
+              <Route index element={/* 생성된 롤링페이퍼 페이지 */ null} />
               <Route path="message" element={/* 롤링페이퍼 메세지 보내기 페이지 */ null} />
               <Route path="edit" element={/* 롤링페이퍼 수정 페이지 */ null} />
             </Route>
