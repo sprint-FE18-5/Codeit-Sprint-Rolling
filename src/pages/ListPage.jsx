@@ -1,25 +1,45 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import getRecipientsList from "../api/getRecipientsList";
 import CardList from "../components/CardList";
+import CardCarousel from "../components/CardCarousel";
+import RegularButton from "../components/Button/RegularButton";
 import useToast from "../hooks/useToast";
+import COLOR_OPTION from "../constants/COLOR_OPTION";
+
+const CardItems = cards => {
+  return cards.map(item => (
+    <CardList
+      key={item.id}
+      title={item.name}
+      recentMessages={item.recentMessages}
+      profileCount={item.recentMessages.length}
+      cardCount={item.messageCount}
+      bgColor={COLOR_OPTION[item.backgroundColor] || COLOR_OPTION["beige"]}
+      emojiStats={item.topReactions}
+      imgBackground={""}
+      toPage={`/post/${item.id}`}
+    />
+  ));
+};
 
 const ListPage = () => {
   const { createToast } = useToast();
-
   const [recentList, setRecentList] = useState([]);
   const [popularList, setPopularList] = useState([]);
+  const navigate = useNavigate();
+
+  const handleBtnClick = () => {
+    navigate(`/post`);
+  };
 
   useEffect(() => {
     const getList = async () => {
       try {
-        const recentList = await getRecipientsList();
-        const popularList = await getRecipientsList({ sort: "like" });
-
-        setRecentList(recentList);
-        setPopularList(popularList);
-
-        console.log(popularList);
-        // console.log(recentList);
+        const recentRecipientsList = await getRecipientsList();
+        const popularRecipientsList = await getRecipientsList({ sort: "like" });
+        setRecentList(recentRecipientsList);
+        setPopularList(popularRecipientsList);
       } catch (error) {
         console.log(error);
         createToast({ message: "데이터를 가져오는 데 실패했습니다.", type: "error", bottom: 40 });
@@ -28,30 +48,22 @@ const ListPage = () => {
     getList();
   }, []);
 
+  const recentListItem = recentList.results || [];
+  const popularListItem = popularList.results || [];
+
   return (
-    <div>
-      <div className="list-popular mt-[65px]">
-        <h2>인기 롤링 페이퍼</h2>
-        <div className="card-slider w-[1160px] flex gap-[20px] overflow-x-auto">
-          {popularList.results?.map(item => (
-            <div className="card" key={item.id}>
-              <CardList
-                title={item.name}
-                recentMessages={item.recentMessages}
-                profileCount={item.recentMessages.length}
-                cardCount={item.messageCount}
-                bgColor={`bg-${item.backgroundColor}-200`}
-                emojiStats={item.topReactions}
-                imgBackground={""}
-                toPage={`/post/${item.id}`}
-              />
-            </div>
-          ))}
-        </div>
+    <div className="list-page pt-[65px] px-[24px]">
+      <div className="list-popular lg:w-[1160px] mx-auto mt-[50px]">
+        <h2 className="font-24-bold mb-[16px]">인기 롤링 페이퍼 🔥</h2>
+        <CardCarousel>{CardItems(popularListItem)}</CardCarousel>
       </div>
-      <div className="list-recent">
-        <h2>최근에 만든 롤링 페이퍼</h2>
+      <div className="list-recent  lg:w-[1160px] mx-auto mt-[50px]">
+        <h2 className="font-24-bold mb-[16px]">최근에 만든 롤링 페이퍼 ⭐️</h2>
+        <CardCarousel>{CardItems(recentListItem)}</CardCarousel>
       </div>
+      <RegularButton size={56} width="280px" className="mx-auto my-[64px]" onClick={handleBtnClick}>
+        나도 만들어보기
+      </RegularButton>
     </div>
   );
 };

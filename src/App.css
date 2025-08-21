@@ -123,6 +123,15 @@
   .card-size {
     @apply min-w-[320px] min-h-[230px] sm:w-[70vw] sm:min-h-[250px] md:w-[384px] md:min-h-[280px];
   }
+
+  /* 스크롤바 숨기기 */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera, Edge */
+  }
 }
 
 /* 폰트 유틸클래스 합성 */
