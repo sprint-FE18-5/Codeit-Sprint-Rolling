@@ -1,4 +1,3 @@
-import { Input } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import ToggleButton from "../../components/Button/ToggleButton";
 import { ThemeOption, ThemeOptionGroup } from "../../components/Option/ThemeOption";
@@ -6,12 +5,17 @@ import { COLOR_OPTIONS, IMAGE_OPTIONS } from "../../constants/OPTIONS";
 import RegularButton from "../../components/Button/RegularButton";
 import postRecipients from "../../api/postRecipients";
 import { useNavigate } from "react-router";
-
+import Input from "../../components/Form/Input";
+import useToast from "../../hooks/useToast";
 const PostPage = () => {
   const [name, setName] = useState("");
   const [backgroundColor, setBackgroundColor] = useState(COLOR_OPTIONS[0]);
   const [backgroundImageURL, setBackgroundImageURL] = useState(IMAGE_OPTIONS[0]);
   const [selectedType, setSelectedType] = useState("color");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const { createToast } = useToast();
+
   const isRenderColor = selectedType === "color" ? true : false;
 
   const navigate = useNavigate();
@@ -33,16 +37,23 @@ const PostPage = () => {
     e.preventDefault();
     try {
       if (!name) {
-        throw new Error("받는 사람 이름을 입력해주세요.");
+        throw new Error("값을 입력해주세요.");
       }
       const response = await getResponse();
       const { id } = response;
       navigate(`/post/${id}`);
     } catch (error) {
-      console.log(error.message);
+      createToast({ message: error.message, type: "error", bottom: 40, duration: 5000 });
     }
   };
 
+  const handleBlur = () => {
+    if (!name) {
+      setErrorMsg("값을 입력해주세요.");
+    } else {
+      setErrorMsg("");
+    }
+  };
   return (
     <form onSubmit={handleSubmitRecipient} className="form-container flex flex-col gap-[50px]">
       <div className="flex flex-col gap-[12px]">
@@ -50,10 +61,10 @@ const PostPage = () => {
         <Input
           placeholder="받는 사람 이름을 입력해 주세요"
           type="text"
-          className={"border border-gray-300 rounded-[8px] h-[50px] px-[16px] py-[12px] font-16-regular text-gray-500"}
           onChange={e => setName(e.target.value)}
           value={name}
-          errorMsg={"테스트"}
+          onBlur={handleBlur}
+          errorMsg={errorMsg}
         />
       </div>
 
