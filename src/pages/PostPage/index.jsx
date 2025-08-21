@@ -6,7 +6,15 @@ import { COLOR_OPTIONS, IMAGE_OPTIONS } from "../../constants/OPTIONS";
 import RegularButton from "../../components/Button/RegularButton";
 
 const PostPage = () => {
-  const [formData, setFormData] = useState({ name: "", backgroundColor: "beige", backgroundImageURL: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    backgroundColor: COLOR_OPTIONS[0],
+    backgroundImageURL: IMAGE_OPTIONS[0],
+  });
+  const [selectedType, setSelectedType] = useState("color");
+
+  const isRenderColor = selectedType === "color" ? true : false;
+
   return (
     <form className="form-container flex flex-col gap-[50px]">
       <div className="flex flex-col gap-[12px]">
@@ -26,19 +34,35 @@ const PostPage = () => {
         <p className="text-gray-500 font-16-regular">컬러를 선택하거나, 이미지를 선택할 수 있습니다.</p>
       </div>
 
-      <ToggleButton colorBtnProps={{ type: "button" }} imageBtnProps={{ type: "button" }} />
+      <ToggleButton
+        selectedType={selectedType}
+        setSelectedType={setSelectedType}
+        colorBtnProps={{ type: "button" }}
+        imageBtnProps={{ type: "button" }}
+      />
       <ThemeOptionGroup>
-        {COLOR_OPTIONS.map(color => (
-          <ThemeOption
-            key={color}
-            optionType="color"
-            label={color}
-            name="theme-color"
-            value={color}
-            checked={formData.backgroundColor === color}
-            onChange={() => setFormData(prev => ({ ...prev, backgroundColor: color }))}
-          />
-        ))}
+        {isRenderColor
+          ? COLOR_OPTIONS.map(color => (
+              <ThemeOption
+                key={color}
+                optionType="color"
+                label={color}
+                name="theme-color"
+                value={color}
+                checked={formData.backgroundColor === color}
+                onChange={() => setFormData(prev => ({ ...prev, backgroundColor: color }))}
+              />
+            ))
+          : IMAGE_OPTIONS.map(url => (
+              <ThemeOption
+                key={url}
+                optionType="image"
+                name="theme-image"
+                value={url}
+                checked={formData.backgroundImageURL === url}
+                onChange={() => setFormData(prev => ({ ...prev, backgroundImageURL: url }))}
+              />
+            ))}
       </ThemeOptionGroup>
       <RegularButton size={56} width="w-full" type="submit">
         생성하기
