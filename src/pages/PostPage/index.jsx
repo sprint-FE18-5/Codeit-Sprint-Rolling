@@ -4,23 +4,47 @@ import ToggleButton from "../../components/Button/ToggleButton";
 import { ThemeOption, ThemeOptionGroup } from "../../components/Option/ThemeOption";
 import { COLOR_OPTIONS, IMAGE_OPTIONS } from "../../constants/OPTIONS";
 import RegularButton from "../../components/Button/RegularButton";
+import postRecipients from "../../api/postRecipients";
+import { useNavigate } from "react-router";
 
 const PostPage = () => {
   const [name, setName] = useState("");
   const [backgroundColor, setBackgroundColor] = useState(COLOR_OPTIONS[0]);
   const [backgroundImageURL, setBackgroundImageURL] = useState(IMAGE_OPTIONS[0]);
-
   const [selectedType, setSelectedType] = useState("color");
-
   const isRenderColor = selectedType === "color" ? true : false;
 
-  useEffect(() => {
-    // selectedType : color 면 img 안보내기
-    // selectedType : image 면 color, img 다보내기
-  }, []);
+  const navigate = useNavigate();
+
+  const getResponse = async () => {
+    switch (selectedType) {
+      case "color":
+        return await postRecipients({ name, backgroundColor });
+
+      case "image":
+        return await postRecipients({ name, backgroundColor, backgroundImageURL });
+
+      default:
+        return null;
+    }
+  };
+
+  const handleSubmitRecipient = async e => {
+    e.preventDefault();
+    try {
+      if (!name) {
+        throw new Error("받는 사람 이름을 입력해주세요.");
+      }
+      const response = await getResponse();
+      const { id } = response;
+      navigate(`/post/${id}`);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
-    <form className="form-container flex flex-col gap-[50px]">
+    <form onSubmit={handleSubmitRecipient} className="form-container flex flex-col gap-[50px]">
       <div className="flex flex-col gap-[12px]">
         <h3 className="text-gray-900 font-24-bold">To. {name}</h3>
         <Input
