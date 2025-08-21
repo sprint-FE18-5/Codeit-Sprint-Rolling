@@ -11,7 +11,7 @@ const ProfileGroup = ({ profileImages = [], profileCount = 0 }) => {
           className="w-7 h-7 rounded-full border-2 border-white -ml-3 first:ml-0 z-10"
         />
       ))}
-      <span className="flex items-center justify-center h-7 rounded-full bg-white text-[#555555] text-xs font-normal absolute z-20 left-[60px] top-0 ml-[-12px] px-2">
+      <span className="flex items-center justify-center h-7 rounded-full bg-white text-[#555555] text-xs font-normal z-20 left-[60px] top-0 ml-[-12px] px-2">
         +{hiddenCount}
       </span>
     </div>
