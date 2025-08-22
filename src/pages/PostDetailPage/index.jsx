@@ -112,10 +112,10 @@ const PostDetailPage = () => {
 
   // 배경 스타일 동적 적용
   const colorMap = {
-    beige: "#FBE2A5",
-    purple: "#E2D6FF",
-    blue: "#D2EAFF",
-    green: "#D2F5C7",
+    beige: "var(--color-beige-200)",
+    purple: "var(--color-purple-200)",
+    blue: "var(--color-blue-200)",
+    green: "var(--color-green-200)",
   };
 
   const isImageBg = !!(recipient && recipient.backgroundImageURL);
@@ -128,12 +128,13 @@ const PostDetailPage = () => {
           backgroundPosition: "center",
         }
       : recipient.backgroundColor
-      ? { backgroundColor: colorMap[recipient.backgroundColor] || "#FBE2A5" }
+      ? { backgroundColor: colorMap[recipient.backgroundColor] || "var(--color-beige-200)" }
       : {}
     : {};
 
   return (
     <div className="min-h-screen pb-10 pt-48" style={bgStyle}>
+      {/* 배경이 이미지일때 오버레이 적용 */}
       {isImageBg && <div className="fixed inset-0 min-h-screen w-full bg-black/50 z-0 pointer-events-none" />}
       <div className="relative">
         <div className="my-container pt-8">
