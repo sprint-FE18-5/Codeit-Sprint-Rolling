@@ -3,14 +3,13 @@ import "./App.css";
 import Layout from "./components/Layout";
 import PostPage from "./pages/PostPage";
 import PostDetailPage from "./pages/PostDetailPage";
-import ListTestPage from "./pages/listTestPage";
 function App() {
   return (
     <>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={/* 메인페이지 */ null} />
-          <Route path="/list" element={<ListTestPage />} />
+          <Route path="/list" element={/* 리스트페이지 */ null} />
 
           <Route path="/post">
             <Route index element={<PostPage />} />
