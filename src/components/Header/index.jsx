@@ -33,7 +33,7 @@ const Header = () => {
 
       {isMatchURL && (
         <RegularButton variant="outlinedIcon" size={40} width={"157px"} onClick={() => navigate("/post")}>
-          <span className="font-16-bold">롤링 페이퍼 만들기</span>
+          <span className="font-15-regular">롤링 페이퍼 만들기</span>
         </RegularButton>
       )}
     </HeaderBase>

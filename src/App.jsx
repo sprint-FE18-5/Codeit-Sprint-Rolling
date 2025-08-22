@@ -3,14 +3,15 @@ import "./App.css";
 import Layout from "./components/Layout";
 import PostPage from "./pages/PostPage";
 import PostMessagePage from "./pages/PostMessage";
-
+import MainPage from "./pages/MainPage";
+import ListPage from "./pages/ListPage";
 function App() {
   return (
     <>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={/* 메인페이지 */ null} />
-          <Route path="/list" element={/* 롤링페이퍼 목록페이지 */ null} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/list" element={<ListPage />} />
 
           <Route path="/post">
             <Route index element={<PostPage />} />
