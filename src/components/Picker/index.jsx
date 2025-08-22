@@ -29,7 +29,9 @@ const Picker = ({ setReactions, setTopReactions }) => {
           <span>추가</span>
         </div>
       </RegularButton>
-      <div className="absolute top-11">{isOpen && <EmojiPicker height={400} onEmojiClick={handleClickEmoji} />}</div>
+      <div className="absolute top-11 right-0">
+        {isOpen && <EmojiPicker height={400} onEmojiClick={handleClickEmoji} />}
+      </div>
     </div>
   );
 };

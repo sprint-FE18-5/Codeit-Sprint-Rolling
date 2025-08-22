@@ -23,7 +23,8 @@ const Share = () => {
           <img src={icShare} alt="공유하기 버튼 이미지" />
         </RegularButton>
       </DropdownTrigger>
-      <div className="w-[140px]">
+
+      <div className="w-[140px] absolute right-0">
         <DropdownContent>
           <DropdownItem>카카오톡 공유</DropdownItem>
           <DropdownItem onClick={handleClickShareURL}>URL 공유</DropdownItem>
