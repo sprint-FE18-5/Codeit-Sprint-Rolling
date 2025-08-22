@@ -19,15 +19,9 @@ const shareRollingPaperByKakaoTalk = ({ name, messages }) => {
     templateId: Number(VITE_KAKAO_TEMPLATE_ID),
     templateArgs: {
       name,
-      sender1: messages[0]?.sender ?? "",
-      content1: messages[0]?.content ?? "",
-      profileImageURL1: messages[0]?.profileImageURL ?? "",
-      sender2: messages[1]?.sender ?? "",
-      content2: messages[1]?.content ?? "",
-      profileImageURL2: messages[1]?.profileImageURL ?? "",
-      sender3: messages[2]?.sender ?? "",
-      content3: messages[2]?.content ?? "",
-      profileImageURL3: messages[2]?.profileImageURL ?? "",
+      sender: messages[0]?.sender ?? "",
+      content: messages[0]?.content ?? "",
+      profileImageURL: messages[0]?.profileImageURL ?? "",
     },
     installTalk: true,
   });
