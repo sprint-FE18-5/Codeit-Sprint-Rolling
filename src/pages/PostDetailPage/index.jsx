@@ -38,6 +38,11 @@ const PostDetailPage = () => {
   }, [recipientId, offset]);
 
   useEffect(() => {
+    // recipientId가 바뀔 때 상태 리셋
+    setMessages([]);
+    setOffset(0);
+    setHasMore(true);
+
     const fetchRecipient = async () => {
       const data = await getRecipients({ recipientId });
       setRecipient(data);
@@ -171,7 +176,7 @@ const PostDetailPage = () => {
               />
             ))}
           </div>
-          {hasMore && <div style={{ height: 40 }} />}
+          {hasMore && <div className="h-10" />}
         </div>
         <Modal
           isVisible={modalOpen}
