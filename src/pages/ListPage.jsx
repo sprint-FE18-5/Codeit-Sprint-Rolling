@@ -40,7 +40,6 @@ const ListPage = () => {
         const popularRecipientsList = await getRecipientsList({ sort: "like" });
         setRecentList(recentRecipientsList);
         setPopularList(popularRecipientsList);
-        console.log(popularRecipientsList);
       } catch (error) {
         console.log(error);
         createToast({ message: "데이터를 가져오는 데 실패했습니다.", type: "error", bottom: 40 });
@@ -62,7 +61,7 @@ const ListPage = () => {
         <h2 className="font-24-bold mb-[16px]">최근에 만든 롤링 페이퍼 ⭐️</h2>
         <CardCarousel>{CardItems(recentListItem)}</CardCarousel>
       </div>
-      <RegularButton size={56} width="280px" className="mx-auto my-[64px]" onClick={handleBtnClick}>
+      <RegularButton size={56} width="" className="w-full md:w-[280px] mx-auto my-[64px]" onClick={handleBtnClick}>
         나도 만들어보기
       </RegularButton>
     </div>

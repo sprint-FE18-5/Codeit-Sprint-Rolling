@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ProfileGroup, CardCountInfo } from "../ProfileGroup";
 import EmojiBadge from "../Badge/EmojiBadge";
@@ -27,6 +28,7 @@ const CardList = ({
   toPage = "/post/1",
 }) => {
   const navigate = useNavigate();
+  const [imgBgSrc, setImgBgSrc] = useState(imgBackground);
 
   // 가장 많이 받은 이모티콘 3개 추출
   const topEmojis = [...emojiStats].sort((a, b) => b.count - a.count).slice(0, 3);
@@ -38,18 +40,19 @@ const CardList = ({
   }));
 
   // 배경 이미지 변수 조건부 렌더링
-  const imgBackgroundElement = imgBackground ? (
+  const imgBackgroundElement = imgBgSrc ? (
     <>
       <img
-        src={imgBackground}
+        src={imgBgSrc}
         alt="카드 배경 이미지"
+        onError={() => setImgBgSrc("")}
         className="absolute inset-0 w-full h-full object-cover rounded-2xl z-0"
       />
       <div className="absolute inset-0 rounded-2xl bg-black/50 z-10" />
     </>
   ) : null;
 
-  const fontColorClass = imgBackground ? "text-white" : "text-grayscale-900";
+  const fontColorClass = imgBgSrc ? "text-white" : "text-grayscale-900";
 
   return (
     <div
@@ -69,7 +72,7 @@ const CardList = ({
           </div>
         </div>
         <div className="flex-1" />
-        <div className={`w-full h-[1px] bg-black/15 mb-[16px] ${imgBackground ? "bg-white/30" : ""}`} />
+        <div className={`w-full h-[1px] bg-black/15 mb-[16px] ${imgBgSrc ? "bg-white/30" : ""}`} />
         <div className="flex gap-1 md:gap-2 w-full">
           {topEmojis.map(reaction => (
             <EmojiBadge key={reaction.id ?? reaction.emoji} reaction={reaction} />
