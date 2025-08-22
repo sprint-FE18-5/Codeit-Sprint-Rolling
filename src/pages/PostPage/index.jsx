@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ToggleButton from "../../components/Button/ToggleButton";
 import { ThemeOption, ThemeOptionGroup } from "../../components/Option/ThemeOption";
 import { COLOR_OPTIONS, IMAGE_OPTIONS } from "../../constants/OPTIONS";
@@ -6,15 +6,12 @@ import RegularButton from "../../components/Button/RegularButton";
 import postRecipients from "../../api/postRecipients";
 import { useNavigate } from "react-router";
 import Input from "../../components/Form/Input";
-import useToast from "../../hooks/useToast";
 const PostPage = () => {
   const [name, setName] = useState("");
   const [backgroundColor, setBackgroundColor] = useState(COLOR_OPTIONS[0]);
   const [backgroundImageURL, setBackgroundImageURL] = useState(IMAGE_OPTIONS[0]);
   const [selectedType, setSelectedType] = useState("color");
   const [errorMsg, setErrorMsg] = useState("");
-
-  const { createToast } = useToast();
 
   const isRenderColor = selectedType === "color" ? true : false;
 
@@ -35,16 +32,9 @@ const PostPage = () => {
 
   const handleSubmitRecipient = async e => {
     e.preventDefault();
-    try {
-      if (!name) {
-        throw new Error("값을 입력해주세요.");
-      }
-      const response = await getResponse();
-      const { id } = response;
-      navigate(`/post/${id}`);
-    } catch (error) {
-      createToast({ message: error.message, type: "error", bottom: 40, duration: 5000 });
-    }
+    const response = await getResponse();
+    const { id } = response;
+    navigate(`/post/${id}`);
   };
 
   const handleBlur = () => {
@@ -103,7 +93,7 @@ const PostPage = () => {
               />
             ))}
       </ThemeOptionGroup>
-      <RegularButton size={56} width="w-full" type="submit">
+      <RegularButton size={56} width="w-full" type="submit" disabled={!name}>
         생성하기
       </RegularButton>
     </form>
