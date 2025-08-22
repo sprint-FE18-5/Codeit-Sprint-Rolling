@@ -63,7 +63,7 @@ const CardList = ({
       <div className="relative z-20 flex flex-col h-full">
         <div>
           <div className={`font-bold text-18 md:text-24 mb-3 ${fontColorClass} line-clamp-1`}>To. {title}</div>
-          <ProfileGroup profileImages={profileImages} profileCount={profileCount} />
+          <ProfileGroup profileImages={profileImages} profileCount={cardCount} />
           <div className={`mb-4 mt-3 ${fontColorClass}`}>
             <CardCountInfo cardCount={cardCount} />
           </div>

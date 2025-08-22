@@ -17,7 +17,7 @@ const CardItems = cards => {
       cardCount={item.messageCount}
       bgColor={COLOR_OPTION[item.backgroundColor] || COLOR_OPTION["beige"]}
       emojiStats={item.topReactions}
-      imgBackground={""}
+      imgBackground={item.backgroundImageURL}
       toPage={`/post/${item.id}`}
     />
   ));
@@ -40,6 +40,7 @@ const ListPage = () => {
         const popularRecipientsList = await getRecipientsList({ sort: "like" });
         setRecentList(recentRecipientsList);
         setPopularList(popularRecipientsList);
+        console.log(popularRecipientsList);
       } catch (error) {
         console.log(error);
         createToast({ message: "데이터를 가져오는 데 실패했습니다.", type: "error", bottom: 40 });
