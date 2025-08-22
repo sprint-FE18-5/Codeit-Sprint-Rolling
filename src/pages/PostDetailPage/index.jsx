@@ -1,17 +1,17 @@
 import { useEffect, useState, useCallback, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import debounce from "lodash/debounce";
-import { useParams } from "react-router-dom";
 import getMessages from "../../api/getMessages";
 import getRecipients from "../../api/getRecipients";
+import deleteMessage from "../../api/deleteMessage";
+import deleteRecipient from "../../api/deleteRecipient";
 import { Card, AddCard } from "../../components/Card";
 import Modal from "../../components/Modal/ModalPopup";
 import ModalContent from "../../components/Modal/ModalContent";
 import RegularButton from "../../components/Button/RegularButton";
-import deleteMessage from "../../api/deleteMessage";
 import { ToastContext } from "../../components/Toast/ToastProvider";
 
-const MESSAGE_LIMIT = 6;
+const MESSAGE_LIMIT = 5;
 
 const PostDetailPage = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const PostDetailPage = () => {
       window.removeEventListener("scroll", handleScroll);
       handleScroll.cancel && handleScroll.cancel();
     };
-  }, [hasMore, fetchMessages, offset]);
+  }, [hasMore, fetchMessages]);
 
   // 카드 삭제 핸들러
   const handleDelete = async cardID => {
@@ -89,9 +89,7 @@ const PostDetailPage = () => {
   // 페이지 삭제 핸들러
   const handleDeletePage = async () => {
     try {
-      await fetch(`https://rolling-api.vercel.app/0-3/recipients/${recipientId}/`, {
-        method: "DELETE",
-      });
+      await deleteRecipient({ recipientId });
       createToast({ message: "페이지가 성공적으로 삭제되었습니다.", type: "success" });
       setTimeout(() => {
         navigate("/list", { replace: true });
@@ -125,7 +123,7 @@ const PostDetailPage = () => {
 
   return (
     <div className="min-h-screen pb-10 pt-48" style={bgStyle}>
-      {isImageBg && <div className="absolute inset-0 w-full h-full bg-black/50 z-0 pointer-events-none" />}
+      {isImageBg && <div className="fixed inset-0 min-h-screen w-full bg-black/50 z-0 pointer-events-none" />}
       <div className="relative">
         <div className="my-container pt-8">
           <div className="md:flex md:justify-end md:mb-4">
@@ -158,31 +156,30 @@ const PostDetailPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* 삭제모드 아닐 때 AddCard + 메시지 카드, 삭제모드일 때 메시지 카드만 */}
             {!isDeleteMode && <AddCard id={recipientId} />}
-            {(() => {
-              // 최초 6개, 이후 스크롤마다 6개씩 추가
-              const showCount = MESSAGE_LIMIT + offset;
-              const endIdx = Math.min(showCount, messages.length);
-              return messages
-                .slice(0, endIdx)
-                .map(msg => (
-                  <Card
-                    key={msg.id}
-                    imgProfile={msg.profileImageURL}
-                    name={msg.sender}
-                    badgeText={msg.relationship}
-                    message={msg.content}
-                    date={msg.createdAt?.slice(0, 10)}
-                    isDeleteMode={isDeleteMode}
-                    onDelete={handleDelete}
-                    onClick={handleCardClick}
-                    cardID={msg.id}
-                  />
-                ));
-            })()}
+            {messages.map(msg => (
+              <Card
+                key={msg.id}
+                imgProfile={msg.profileImageURL}
+                name={msg.sender}
+                badgeText={msg.relationship}
+                message={msg.content}
+                date={msg.createdAt?.slice(0, 10)}
+                isDeleteMode={isDeleteMode}
+                onDelete={handleDelete}
+                onClick={handleCardClick}
+                cardID={msg.id}
+              />
+            ))}
           </div>
           {hasMore && <div style={{ height: 40 }} />}
         </div>
-        <Modal isVisible={modalOpen} onClose={() => setModalOpen(false)}>
+        <Modal
+          isVisible={modalOpen}
+          onClose={() => {
+            setModalOpen(false);
+            setModalData(null);
+          }}
+        >
           {modalData && (
             <ModalContent
               profileImg={modalData.profileImageURL}
@@ -190,7 +187,10 @@ const PostDetailPage = () => {
               relationship={modalData.relationship}
               message={modalData.content}
               date={modalData.createdAt?.slice(0, 10)}
-              onClose={() => setModalOpen(false)}
+              onClose={() => {
+                setModalOpen(false);
+                setModalData(null);
+              }}
             />
           )}
         </Modal>
