@@ -40,7 +40,7 @@ const CardCarousel = ({ children }) => {
       )}
       <ul
         ref={listRef}
-        className="carousel-container xl:w-[1160px] flex gap-[12px] md:gap-[20px] overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+        className="carousel-container xl:w-[1160px] flex gap-[12px] md:gap-[20px] overflow-x-auto xl:overflow-x-hidden snap-x snap-mandatory scrollbar-hide"
       >
         {React.Children.map(children, child => (
           <li key={child.key} className="card snap-center md:snap-start">
