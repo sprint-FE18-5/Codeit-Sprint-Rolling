@@ -71,7 +71,9 @@ const Card = ({
         </div>
         {isDeleteMode && <DeleteButton onClick={handleClickDelete} />}
       </div>
-      <p className="text-15 md:text-18 text-grayscale-600 pt-2 border-t border-grayscale-200 line-clamp-3">{message}</p>
+      <div className="text-15 md:text-18 text-grayscale-600 pt-2 border-t border-grayscale-200 line-clamp-3">
+        {message}
+      </div>
       <div className="font-12-regular text-grayscale-400 mt-auto">{date}</div>
     </div>
   );
