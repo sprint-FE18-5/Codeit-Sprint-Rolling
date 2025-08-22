@@ -24,16 +24,23 @@ const PostDetailPage = () => {
   const [isDeleteMode, setIsDeleteMode] = useState(false); // 삭제 모드 여부
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태
   const [modalData, setModalData] = useState(null); // 모달 내용
+  const [isLoading, setIsLoading] = useState(false); // 메시지 로딩 중 여부
 
   // 메시지 불러오기
   const fetchMessages = useCallback(async () => {
-    const data = await getMessages({ recipientId, limit: MESSAGE_LIMIT, offset });
-    if (data?.results?.length) {
-      setMessages(prev => [...prev, ...data.results]);
-      setHasMore(data.next !== null);
-      setOffset(prev => prev + MESSAGE_LIMIT);
-    } else {
-      setHasMore(false);
+    if (isLoading) return; // 중복 호출 방지
+    setIsLoading(true);
+    try {
+      const data = await getMessages({ recipientId, limit: MESSAGE_LIMIT, offset });
+      if (data?.results?.length) {
+        setMessages(prev => [...prev, ...data.results]);
+        setHasMore(data.next !== null);
+        setOffset(prev => prev + MESSAGE_LIMIT);
+      } else {
+        setHasMore(false);
+      }
+    } finally {
+      setIsLoading(false);
     }
   }, [recipientId, offset]);
 
@@ -49,7 +56,6 @@ const PostDetailPage = () => {
     };
     fetchRecipient();
     fetchMessages();
-    // eslint-disable-next-line
   }, [recipientId]);
 
   // 무한 스크롤: window scroll + debounce 방식( debounce 함수는 lodash에서 가져옴 )
