@@ -11,7 +11,7 @@ import ModalContent from "../../components/Modal/ModalContent";
 import RegularButton from "../../components/Button/RegularButton";
 import { ToastContext } from "../../components/Toast/ToastProvider";
 
-const MESSAGE_LIMIT = 5;
+const MESSAGE_LIMIT = 6;
 
 const PostDetailPage = () => {
   const navigate = useNavigate();
