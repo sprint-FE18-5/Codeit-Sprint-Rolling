@@ -41,6 +41,7 @@ const Editor = ({ initialContent, onChange, selectedFont }) => {
 
     const update = () => setRerender(v => v + 1);
     editor.on("transaction", update);
+    console.log(editor.getText());
     return () => editor.off("transaction", update);
   }, [editor, selectedFont]);
 
