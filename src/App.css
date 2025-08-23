@@ -161,9 +161,6 @@
   .form-container {
     @apply mt-[122px] max-w-[320px] md:max-w-[720px] mx-auto;
   }
-  .card-size {
-    @apply min-w-[320px] min-h-[230px] sm:w-[70vw] sm:min-h-[250px] md:w-[384px] md:min-h-[280px];
-  }
 
   /* 스크롤바 숨기기 */
   .scrollbar-hide {
