@@ -42,6 +42,8 @@ const Header = () => {
 
 const HeaderService = () => {
   const params = useParams();
+  const navigate = useNavigate();
+
   const { id: recipientId } = params;
   const [recipient, setRecipient] = useState({});
   const [messages, setMessages] = useState({});
@@ -52,6 +54,9 @@ const HeaderService = () => {
   useEffect(() => {
     const getData = async () => {
       const recipientData = await getRecipients({ recipientId });
+      if (!recipientData) {
+        navigate("/none-exist-url");
+      }
       const messagesData = await getMessages({ recipientId });
       const reactionsData = await getReactions({ recipientId });
       setRecipient(recipientData);
