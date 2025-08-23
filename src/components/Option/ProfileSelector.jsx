@@ -1,7 +1,7 @@
 import ProfileOption from "./ProfileOption";
 import icProfile from "../../assets/icProfile.svg";
 
-const ProfileSelector = ({ images, selectedIdx, onSelect }) => (
+const ProfileSelector = ({ images, selectedIdx, onSelect, setForm }) => (
   <div className="grid gap-x-[32px] grid-cols-[80px_auto] items-center">
     <div className="selected-profile w-[80px] h-[80px] rounded-full overflow-hidden">
       <img
@@ -19,7 +19,10 @@ const ProfileSelector = ({ images, selectedIdx, onSelect }) => (
             image={image}
             alt={`Profile Image ${idx + 1}`}
             selected={selectedIdx === idx}
-            onClick={() => onSelect(idx)}
+            onClick={() => {
+              onSelect(idx);
+              setForm(prev => ({ ...prev, profileImageURL: images[selectedIdx] }));
+            }}
           />
         ))}
       </div>
