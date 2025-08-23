@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import RelationshipBadge from "../Badge/RelationshipBadge";
 import CircleButton from "../Button/CircleButton";
 import RegularButton from "../Button/RegularButton";
 import icPlus from "../../assets/icPlus.svg";
 import icDelete from "../../assets/icDelete.svg";
+import defaultProfileImg from "../../assets/icProfile.svg";
 
 /**
  * Card 컴포넌트 props
@@ -45,6 +47,8 @@ const Card = ({
   onClick,
   cardID,
 }) => {
+  const [imgSrc, setImgSrc] = useState(imgProfile || defaultProfileImg);
+
   const handleClickDelete = e => {
     e.stopPropagation();
     onDelete?.(cardID);
@@ -61,7 +65,12 @@ const Card = ({
       onClick={handleClickCard} // 모달 연결
     >
       <div className="flex items-center gap-3">
-        <img src={imgProfile} alt={name} className="w-14 h-14 rounded-full object-cover border border-grayscale-200" />
+        <img
+          src={imgSrc}
+          alt={name}
+          onError={() => setImgSrc(defaultProfileImg)}
+          className="w-14 h-14 rounded-full object-cover border border-grayscale-200"
+        />
         <div>
           <div>
             <span className="text-18 md:text-20">From.</span>
