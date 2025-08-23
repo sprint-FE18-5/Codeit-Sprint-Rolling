@@ -10,7 +10,7 @@
 const Modal = ({ isVisible = false, onClose, children }) => {
   if (!isVisible) return null;
   return (
-    <div className="h-dvh flex items-center justify-center bg-black/60" onClick={onClose}>
+    <div className="fixed inset-0 z-999 h-dvh flex items-center justify-center bg-black/60" onClick={onClose}>
       <div onClick={e => e.stopPropagation()}>{children}</div>
     </div>
   );
