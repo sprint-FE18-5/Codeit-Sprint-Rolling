@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import RelationshipBadge from "../Badge/RelationshipBadge";
 import CircleButton from "../Button/CircleButton";
-import Button from "../Button";
+import RegularButton from "../Button/RegularButton";
+import icPlus from "../../assets/icPlus.svg";
 import icDelete from "../../assets/icDelete.svg";
 
 /**
@@ -18,18 +19,18 @@ import icDelete from "../../assets/icDelete.svg";
  */
 // 삭제 버튼 컴포넌트
 const DeleteButton = ({ onClick }) => (
-  <Button
+  <RegularButton
     onClick={onClick}
     className="absolute top-6 right-6"
     aria-label="삭제"
     type="button"
-    iconOnly
     variant="outlinedIcon"
     size={36}
-    width={36}
+    width="36px"
+    isSquare={true}
   >
     <img src={icDelete} alt="삭제" />
-  </Button>
+  </RegularButton>
 );
 
 // 카드 컴포넌트
@@ -56,7 +57,7 @@ const Card = ({
 
   return (
     <div
-      className="bg-white rounded-2xl shadow-sm p-6 card-size flex flex-col gap-4 relative cursor-pointer transition-all font-pretendard"
+      className="bg-white rounded-2xl shadow-sm min-w-[320px] md:min-w-0 p-6 h-71 flex flex-col gap-4 relative cursor-pointer transition-all font-pretendard"
       onClick={handleClickCard} // 모달 연결
     >
       <div className="flex items-center gap-3">
@@ -70,7 +71,9 @@ const Card = ({
         </div>
         {isDeleteMode && <DeleteButton onClick={handleClickDelete} />}
       </div>
-      <p className="text-15 md:text-18 text-grayscale-600 pt-2 border-t border-grayscale-200 line-clamp-3">{message}</p>
+      <div className="text-15 md:text-18 text-grayscale-600 pt-2 border-t border-grayscale-200 line-clamp-3">
+        {message}
+      </div>
       <div className="font-12-regular text-grayscale-400 mt-auto">{date}</div>
     </div>
   );
@@ -85,8 +88,10 @@ const AddCard = ({ id }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm card-size flex items-center justify-center transition-all">
-      <CircleButton onClick={handleClick} />
+    <div className="bg-white rounded-2xl min-w-[320px] md:min-w-0 h-71 shadow-sm flex items-center justify-center transition-all">
+      <CircleButton onClick={handleClick}>
+        <img src={icPlus} alt="카드 추가" />
+      </CircleButton>
     </div>
   );
 };
