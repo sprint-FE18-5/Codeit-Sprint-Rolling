@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 const INPUT_STYLES = {
   base: "w-full h-[50px] px-[16px] rounded-[8px] text-16 leading-6 tracking-[-1%] focus:outline-2 focus:outline-offset-[-2px] text-grayscale-900 placeholder:text-grayscale-500 duration-100",
   normal:
-    "border border-grayscale-300 hover:border-grayscale-500 focus:outline-grayscale-500 focus:placeholder:text-grayscale-900 active:border-2 active:border-grayscale-500 text-grayscale-900 active:placeholder:text-grayscale-900",
+    "border border-grayscale-300 hover:border-grayscale-500 focus:outline-grayscale-500 focus:placeholder:text-grayscale-500 active:border-2 active:border-grayscale-500 text-grayscale-900 active:placeholder:text-grayscale-500",
   active:
     "border-2 border-grayscale-500 hover:border-grayscale-500 focus:outline-grayscale-500 placeholder:text-grayscale-900",
   error:

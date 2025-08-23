@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import getRecipientsList from "../api/getRecipientsList";
-import CardList from "../components/CardList";
-import CardCarousel from "../components/CardCarousel";
-import RegularButton from "../components/Button/RegularButton";
-import useToast from "../hooks/useToast";
-import COLOR_OPTION from "../constants/COLOR_OPTION";
+import getRecipientsList from "../../api/getRecipientsList";
+import CardList from "../../components/CardList";
+import CardCarousel from "../../components/CardCarousel";
+import RegularButton from "../../components/Button/RegularButton";
+import useToast from "../../hooks/useToast";
+import COLOR_OPTION from "../../constants/COLOR_OPTION";
 
 const CardItems = cards => {
   return cards.map(item => (

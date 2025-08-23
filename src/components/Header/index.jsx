@@ -49,7 +49,7 @@ const HeaderService = () => {
   const [messages, setMessages] = useState({});
   const [reactions, setReactions] = useState({});
   const [topReactions, setTopReactions] = useState([]);
-  const profileImages = messages?.results?.map(message => message.profileImageURL);
+  const profileImages = messages?.results?.slice(0, 3).map(message => message.profileImageURL);
 
   useEffect(() => {
     const getData = async () => {
@@ -81,7 +81,7 @@ const HeaderService = () => {
             <DropdownTrigger showArrow>
               <div className="flex gap-[8px]">
                 {topReactions?.map(reaction => (
-                  <EmojiBadge reaction={reaction} />
+                  <EmojiBadge reaction={reaction} key={reaction.id} />
                 ))}
               </div>
             </DropdownTrigger>
@@ -89,7 +89,7 @@ const HeaderService = () => {
               <DropdownContent>
                 <div className="p-[24px] grid grid-cols-4 gap-[10px]">
                   {reactions?.results?.map(reaction => (
-                    <div className="w-1/4">
+                    <div className="w-1/4" key={reaction.id}>
                       <EmojiBadge reaction={reaction} />
                     </div>
                   ))}
