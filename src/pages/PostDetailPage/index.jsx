@@ -78,7 +78,7 @@ const PostDetailPage = () => {
   }, [hasMore, fetchMessages]);
 
   // 카드 삭제 핸들러
-  const handleDelete = async cardID => {
+  const handleDeleteCard = async cardID => {
     try {
       await deleteMessage({ messageId: cardID });
       setMessages(prev => prev.filter(msg => msg.id !== cardID));
@@ -89,7 +89,7 @@ const PostDetailPage = () => {
   };
 
   // 카드 클릭 핸들러 (모달)
-  const handleCardClick = cardID => {
+  const handleClickCard = cardID => {
     const card = messages.find(msg => msg.id === cardID);
     if (card) {
       setModalData(card);
@@ -177,8 +177,8 @@ const PostDetailPage = () => {
                 message={msg.content}
                 date={msg.createdAt?.slice(0, 10)}
                 isDeleteMode={isDeleteMode}
-                onDelete={handleDelete}
-                onClick={handleCardClick}
+                onDelete={handleDeleteCard}
+                onClick={handleClickCard}
                 cardID={msg.id}
               />
             ))}
