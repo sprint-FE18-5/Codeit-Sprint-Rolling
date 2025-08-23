@@ -1,6 +1,6 @@
 //import Page from "../../components/Page";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Input from "../../components/Form/Input";
 import FormLayout from "../../components/Form/FormLayout";
 import FormField from "../../components/Form/FormField";
@@ -8,7 +8,8 @@ import Editor from "../../components/Form/Editor";
 import ProfileSelector from "../../components/Option/ProfileSelector";
 import RegularButton from "../../components/Button/RegularButton";
 import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "../../components/Dropdown";
-
+import postMessage from "../../api/postMessage";
+import useToast from "../../hooks/useToast";
 // <상대와의 관계> 옵션
 const relationshipOptions = [
   { label: "지인", value: "지인" },
@@ -41,16 +42,19 @@ const IMAGE_OPTIONS = [
 
 const PostMessagePage = () => {
   //form 상태 관리
+  const navigate = useNavigate();
+  const { createToast } = useToast();
   const { id: recipientId } = useParams();
   const [form, setForm] = useState({
     name: "", // required
     relationship: relationshipOptions[0].value, // required
     font: fontOptions[0].value, // required
     profileImageURL: "", // required
+    content: "", // required
   });
   const [errors, setErrors] = useState({ name: "" });
   const [touched, setTouched] = useState({ name: false });
-
+  const [isValidForm, setIsValidForm] = useState(false);
   // 유효성 체크/에러 메시지
   const validateName = value => {
     if (!value) return "값을 입력해주세요.";
@@ -78,10 +82,21 @@ const PostMessagePage = () => {
   // 프로필 이미지 선택 상태 (선택 안 했을 때 null)
   const [selectedProfileIdx, setSelectedProfileIdx] = useState(null); // 이것도 구조가 너무 복잡해서 그냥 setForm을 넘겨줬는데 한번 생각해보세요
 
-  const handleSubmitMessage = e => {
+  const handleSubmitMessage = async e => {
     e.preventDefault();
-    console.log(form);
+    try {
+      await postMessage({ recipientId, ...form });
+      navigate(`/post/${recipientId}`);
+    } catch (error) {
+      createToast({ message: "메시지 생성을 실패하였습니다", type: "error", bottom: 40 });
+    }
   };
+
+  useEffect(() => {
+    if (form.name && form.relationship && form.profileImageURL && form.content && form.font) {
+      setIsValidForm(true);
+    } else setIsValidForm(false);
+  }, [form]);
 
   return (
     <FormLayout onSubmit={handleSubmitMessage}>
@@ -124,7 +139,7 @@ const PostMessagePage = () => {
         </Dropdown>
       </FormField>
       <FormField label="내용을 입력해주세요." htmlFor="editor">
-        <Editor selectedFont={selectedFont} />
+        <Editor selectedFont={selectedFont} onChange={html => setForm(prev => ({ ...prev, content: html }))} />
       </FormField>
       <FormField label="폰트 선택" htmlFor="font-select">
         <Dropdown type="select" defaultValue={selectedFont}>
@@ -145,7 +160,7 @@ const PostMessagePage = () => {
           </DropdownContent>
         </Dropdown>
       </FormField>
-      <RegularButton type="submit" size={56} width="100%" className="mt-[12px]">
+      <RegularButton type="submit" size={56} width="100%" className="mt-[12px]" disabled={!isValidForm}>
         생성하기
       </RegularButton>
     </FormLayout>

@@ -1,6 +1,6 @@
 import instance from "../instance";
 
-const postReactions = async ({ recipientId, name: sender, profileImageURL, relationship, content, font } = {}) => {
+const postMessage = async ({ recipientId, name: sender, profileImageURL, relationship, content, font } = {}) => {
   try {
     const { data } = await instance.post(`recipients/${recipientId}/messages/`, {
       sender,
@@ -15,4 +15,4 @@ const postReactions = async ({ recipientId, name: sender, profileImageURL, relat
   }
 };
 
-export default postReactions;
+export default postMessage;
