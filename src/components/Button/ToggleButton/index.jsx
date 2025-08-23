@@ -14,9 +14,14 @@ import RegularButton from "../RegularButton";
  *
  * @returns {JSX.Element} 컬러/이미지 중 하나를 선택하는 토글 버튼
  */
-const ToggleButton = ({ className = "", toggleProps = {}, colorBtnProps = {}, imageBtnProps = {} }) => {
-  const [selectedType, setSelectedType] = useState("color");
-
+const ToggleButton = ({
+  selectedType,
+  setSelectedType,
+  className = "",
+  toggleProps = {},
+  colorBtnProps = {},
+  imageBtnProps = {},
+}) => {
   const commonBtnStyle = COMMON_BUTTON;
   const toggleBtnStyle = TOGGLE_CONTAINER;
   const colorBtnStyle = getSelectStyle(selectedType === "color");
