@@ -5,13 +5,14 @@ import PostPage from "./pages/PostPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import ListPage from "./pages/ListPage";
 import PostMessagePage from "./pages/PostMessage";
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
     <>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={/* 메인페이지 */ null} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/list" element={<ListPage />} />
 
           <Route path="/post">
