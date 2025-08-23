@@ -1,10 +1,20 @@
 import icShare from "../../assets/icShare.svg";
 import useToast from "../../hooks/useToast";
+import { initKakao, shareRollingPaperByKakaoTalk } from "../../utils/kakao";
 import RegularButton from "../Button/RegularButton";
 import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "../Dropdown";
-
-const Share = () => {
+const Share = ({ name, messages }) => {
   const { createToast } = useToast();
+
+  const handleClickShareKaKaoTalk = () => {
+    try {
+      initKakao();
+      shareRollingPaperByKakaoTalk({ name, messages });
+    } catch (error) {
+      createToast({ message: "롤링 페이퍼 공유에 실패하였습니다.", type: "error", bottom: 40, duration: 5000 });
+    }
+  };
+
   const handleClickShareURL = () => {
     const url = window.location.href;
     navigator.clipboard
@@ -18,14 +28,14 @@ const Share = () => {
   };
   return (
     <Dropdown>
-      <DropdownTrigger>
+      <DropdownTrigger as="div">
         <RegularButton variant="outlinedIcon" size={36} width={"56px"}>
           <img src={icShare} alt="공유하기 버튼 이미지" />
         </RegularButton>
       </DropdownTrigger>
       <div className="w-[140px]">
         <DropdownContent>
-          <DropdownItem>카카오톡 공유</DropdownItem>
+          <DropdownItem onClick={handleClickShareKaKaoTalk}>카카오톡 공유</DropdownItem>
           <DropdownItem onClick={handleClickShareURL}>URL 공유</DropdownItem>
         </DropdownContent>
       </div>
