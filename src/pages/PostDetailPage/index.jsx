@@ -138,7 +138,7 @@ const PostDetailPage = () => {
   const bgStyle = getBgStyle(recipient);
 
   return (
-    <Page title={`롤링 페이퍼 - ${recipient.name}`}>
+    <Page title={`롤링 페이퍼 - ${recipient?.name}`}>
       <div className="min-h-screen pb-10 pt-48" style={bgStyle}>
         {/* 배경이 이미지일때 오버레이 적용 */}
         {isImageBg && <div className="fixed inset-0 min-h-screen w-full bg-black/50 z-0 pointer-events-none" />}

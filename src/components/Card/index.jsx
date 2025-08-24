@@ -73,7 +73,7 @@ const Card = ({
           className="w-14 h-14 rounded-full object-cover border border-grayscale-200"
         />
         <div>
-          <div>
+          <div className={isDeleteMode ? "pr-[36px]" : ""}>
             <span className="text-18 md:text-20">From.</span>
             <span className="text-16 md:text-20 font-bold ml-1">{name}</span>
           </div>
