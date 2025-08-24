@@ -14,6 +14,8 @@ import RegularButton from "../../Button/RegularButton";
  * @returns {JSX.Element}
  */
 const ModalContent = ({ profileImg = "", name = "", relationship = "지인", message = "", date = "", onClose }) => {
+  // HTML 태그 제거
+  const stripTags = html => html.replace(/<[^>]*>?/g, "");
   return (
     <div className="md:w-[600px] w-[320px] md:p-[40px] p-[20px] bg-white rounded-[16px] shadow-sm flex flex-col gap-[20px]">
       <div className="flex items-center gap-3">
@@ -32,7 +34,7 @@ const ModalContent = ({ profileImg = "", name = "", relationship = "지인", mes
         <div className="text-xs text-gray-400 ml-auto">{date}</div>
       </div>
       <div className="md:text-[18px] text-[15px] text-gray-700 pt-[16px] border-t border-gray-200 break-all max-h-[256px] min-h-[120px] overflow-y-auto">
-        {message}
+        {stripTags(message)}
       </div>
       <RegularButton variant="primary" size={40} width={"120px"} className="m-auto" onClick={onClose}>
         확인

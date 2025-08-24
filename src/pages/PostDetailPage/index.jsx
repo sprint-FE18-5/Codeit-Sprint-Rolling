@@ -111,26 +111,30 @@ const PostDetailPage = () => {
   };
 
   // 배경 스타일 동적 적용
-  const colorMap = {
+  const COLORMAP = {
     beige: "var(--color-beige-200)",
     purple: "var(--color-purple-200)",
     blue: "var(--color-blue-200)",
     green: "var(--color-green-200)",
   };
 
-  const isImageBg = !!(recipient && recipient.backgroundImageURL);
+  const getBgStyle = recipient => {
+    if (!recipient) return {};
+    if (recipient.backgroundImageURL) {
+      return {
+        backgroundImage: `url(${recipient.backgroundImageURL})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      };
+    }
+    if (recipient.backgroundColor) {
+      return { backgroundColor: COLORMAP[recipient.backgroundColor] || "var(--color-beige-200)" };
+    }
+    return {};
+  };
 
-  const bgStyle = recipient
-    ? recipient.backgroundImageURL
-      ? {
-          backgroundImage: `url(${recipient.backgroundImageURL})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }
-      : recipient.backgroundColor
-      ? { backgroundColor: colorMap[recipient.backgroundColor] || "var(--color-beige-200)" }
-      : {}
-    : {};
+  const isImageBg = !!(recipient && recipient.backgroundImageURL);
+  const bgStyle = getBgStyle(recipient);
 
   return (
     <div className="min-h-screen pb-10 pt-48" style={bgStyle}>
