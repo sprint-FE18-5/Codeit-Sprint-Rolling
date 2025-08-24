@@ -13,12 +13,13 @@ const initKakao = () => {
 // Kakao.Share.sendDefault(): 직접 만든 버튼(커스텀 버튼)에서 사용하는 경우
 // 템플릿 객체 전달: sendDefault() 호출 시, 앞서 구성한 템플릿 객체를 전달합니다.
 
-const shareRollingPaperByKakaoTalk = ({ name, messages }) => {
+const shareRollingPaperByKakaoTalk = ({ name, messages, recipientId }) => {
   const { Kakao } = window;
   Kakao.Share.sendCustom({
     templateId: Number(VITE_KAKAO_TEMPLATE_ID),
     templateArgs: {
       name,
+      recipientId,
       sender: messages[0]?.sender ?? "",
       content: messages[0]?.content ?? "",
       profileImageURL: messages[0]?.profileImageURL ?? "",

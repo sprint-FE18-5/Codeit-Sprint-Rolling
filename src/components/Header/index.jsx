@@ -101,7 +101,7 @@ const HeaderService = () => {
             </Dropdown>
             <Picker setReactions={setReactions} setTopReactions={setTopReactions} />
             <span className="w-px h-[28px] bg-[#EEEEEE] mx-[7px]"></span>
-            <Share name={recipient.name} messages={messages.results} />
+            <Share name={recipient.name} messages={messages.results} recipientId={recipientId} />
           </div>
         </div>
       </nav>
