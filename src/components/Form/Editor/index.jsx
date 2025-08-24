@@ -34,8 +34,13 @@ const Editor = ({ initialContent, onChange, selectedFont }) => {
     if (!editor) return;
 
     // 전체 텍스트에 폰트 일괄 적용
-    if (selectedFont) {
-      editor.chain().focus().selectAll().setFontFamily(selectedFont).run();
+    if (selectedFont && editor) {
+      try {
+        editor.chain().focus().selectAll().setFontFamily(selectedFont).run();
+      } catch (e) {
+        // tiptap view 에러 방지
+        console.warn("Editor font set error:", e);
+      }
     }
 
     const update = () => setRerender(v => v + 1);
