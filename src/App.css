@@ -20,7 +20,7 @@
 }
 
 @font-face {
-  font-family: "Handletter";
+  font-family: "Nanum Handletter";
   src: url("../src/utils/Handletter-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
@@ -141,7 +141,7 @@
 
   --font-pretendard: "Pretendard";
   --font-noto-sans: "Noto Sans";
-  --font-handletter: "Handletter";
+  --font-nanum-handletter: "Nanum Handletter";
   --font-nanum-myeongjo: "Nanum Myeongjo";
   --text-28: 28px;
   --text-24: 24px;
