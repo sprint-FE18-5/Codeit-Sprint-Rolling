@@ -34,10 +34,8 @@ const Editor = ({ initialContent, onChange, selectedFont }) => {
     if (!editor) return;
 
     // 전체 텍스트에 폰트 일괄 적용
-
     if (selectedFont) {
       editor.chain().focus().selectAll().setFontFamily(selectedFont).run();
-      editor.commands.setTextSelection(0);
     }
 
     const update = () => setRerender(v => v + 1);
