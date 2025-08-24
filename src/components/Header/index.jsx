@@ -82,7 +82,7 @@ const HeaderService = () => {
                   ))}
                 </div>
               </DropdownTrigger>
-              <div className="w-[312px] absolute">
+              <div className="w-[312px] absolute right-0">
                 <DropdownContent>
                   <div className="p-[24px] grid grid-cols-4 gap-[10px]">
                     {reactions?.results?.map(reaction => (
