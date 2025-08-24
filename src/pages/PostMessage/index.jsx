@@ -10,6 +10,7 @@ import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "../../
 import getProfileImages from "../../api/getProfileImages";
 import postMessage from "../../api/postMessage";
 import useToast from "../../hooks/useToast";
+import Page from "../Page";
 
 // <상대와의 관계> 옵션
 const relationshipOptions = [
@@ -101,7 +102,6 @@ const PostMessagePage = () => {
       font: selectedFont?.label || form.font,
       recipientId,
     };
-
     try {
       await postMessage(payload);
       navigate(`/post/${recipientId}`);
@@ -120,76 +120,78 @@ const PostMessagePage = () => {
   const selectedFontClass = selectedFontOption?.className || "";
 
   return (
-    <FormLayout onSubmit={handleSubmitMessage}>
-      <FormField label="From." htmlFor="name">
-        <Input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="이름을 입력해주세요."
-          value={form.name}
-          onChange={handleInput}
-          onBlur={handleInput}
-          errorMsg={touched.name ? errors.name : ""}
-        />
-      </FormField>
-      <FormField label="프로필 이미지" htmlFor="profileImage">
-        <ProfileSelector
-          images={profileImages}
-          selectedIdx={selectedProfileIdx}
-          onSelect={handleProfileImageChange}
-          isLoading={isLoadingImages}
-        />
-      </FormField>
-      <FormField label="상대와의 관계" htmlFor="relationship">
-        <Dropdown type="select" defaultValue={form.relationship}>
-          <DropdownTrigger id="relationship" showArrow>
-            {form.relationship || "지인"}
-          </DropdownTrigger>
-          <DropdownContent>
-            {relationshipOptions.map(option => (
-              <DropdownItem
-                key={option.value}
-                value={option.value}
-                onClick={() => setForm(prev => ({ ...prev, relationship: option.value }))}
-              >
-                {option.label}
-              </DropdownItem>
-            ))}
-          </DropdownContent>
-        </Dropdown>
-      </FormField>
-      <FormField label="내용을 입력해주세요." htmlFor="editor">
-        <Editor selectedFont={form.font} onChange={html => setForm(prev => ({ ...prev, content: html }))} />
-      </FormField>
-      <FormField label="폰트 선택" htmlFor="font-select">
-        <Dropdown type="select" value={form.font}>
-          <DropdownTrigger id="font-select" showArrow className={selectedFontClass}>
-            {selectedFontOption && selectedFontOption.label}
-          </DropdownTrigger>
-          <DropdownContent>
-            {fontOptions.map(font => (
-              <DropdownItem
-                key={font.value}
-                value={font.value}
-                className={font.className}
-                onClick={() =>
-                  setForm(prev => ({
-                    ...prev,
-                    font: font.value,
-                  }))
-                }
-              >
-                {font.label}
-              </DropdownItem>
-            ))}
-          </DropdownContent>
-        </Dropdown>
-      </FormField>
-      <RegularButton type="submit" size={56} width="100%" className="mt-[12px]" disabled={!isValidForm}>
-        생성하기
-      </RegularButton>
-    </FormLayout>
+    <Page title="롤링 페이퍼 - 메시지 보내기">
+      <FormLayout onSubmit={handleSubmitMessage}>
+        <FormField label="From." htmlFor="name">
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="이름을 입력해주세요."
+            value={form.name}
+            onChange={handleInput}
+            onBlur={handleInput}
+            errorMsg={touched.name ? errors.name : ""}
+          />
+        </FormField>
+        <FormField label="프로필 이미지" htmlFor="profileImage">
+          <ProfileSelector
+            images={profileImages}
+            selectedIdx={selectedProfileIdx}
+            onSelect={handleProfileImageChange}
+            isLoading={isLoadingImages}
+          />
+        </FormField>
+        <FormField label="상대와의 관계" htmlFor="relationship">
+          <Dropdown type="select" defaultValue={form.relationship}>
+            <DropdownTrigger id="relationship" showArrow>
+              {form.relationship || "지인"}
+            </DropdownTrigger>
+            <DropdownContent>
+              {relationshipOptions.map(option => (
+                <DropdownItem
+                  key={option.value}
+                  value={option.value}
+                  onClick={() => setForm(prev => ({ ...prev, relationship: option.value }))}
+                >
+                  {option.label}
+                </DropdownItem>
+              ))}
+            </DropdownContent>
+          </Dropdown>
+        </FormField>
+        <FormField label="내용을 입력해주세요." htmlFor="editor">
+          <Editor selectedFont={form.font} onChange={html => setForm(prev => ({ ...prev, content: html }))} />
+        </FormField>
+        <FormField label="폰트 선택" htmlFor="font-select">
+          <Dropdown type="select" value={form.font}>
+            <DropdownTrigger id="font-select" showArrow className={selectedFontClass}>
+              {selectedFontOption && selectedFontOption.label}
+            </DropdownTrigger>
+            <DropdownContent>
+              {fontOptions.map(font => (
+                <DropdownItem
+                  key={font.value}
+                  value={font.value}
+                  className={font.className}
+                  onClick={() =>
+                    setForm(prev => ({
+                      ...prev,
+                      font: font.value,
+                    }))
+                  }
+                >
+                  {font.label}
+                </DropdownItem>
+              ))}
+            </DropdownContent>
+          </Dropdown>
+        </FormField>
+        <RegularButton type="submit" size={56} width="100%" className="mt-[12px]" disabled={!isValidForm}>
+          생성하기
+        </RegularButton>
+      </FormLayout>
+    </Page>
   );
 };
 
