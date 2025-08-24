@@ -22,7 +22,7 @@ const Picker = ({ setReactions, setTopReactions }) => {
     setIsOpen(false);
   };
   return (
-    <div className="relative">
+    <div>
       <RegularButton
         variant="outlinedIcon"
         size={36}
@@ -36,7 +36,7 @@ const Picker = ({ setReactions, setTopReactions }) => {
           <span className="hidden md:block">추가</span>
         </div>
       </RegularButton>
-      <div className="absolute top-11 right-[-80px] md:right-0">
+      <div className="absolute left-0 md:left-auto md:right-0 top-11">
         {isOpen && <EmojiPicker height={400} width={320} onEmojiClick={handleClickEmoji} />}
       </div>
     </div>

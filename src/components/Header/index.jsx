@@ -78,7 +78,7 @@ const HeaderService = () => {
             <CardCountInfo cardCount={messages.count} />
           </div>
           <span className="hidden lg:block w-px h-[28px] bg-[#EEEEEE] mx-[28px]"></span>
-          <div className="flex items-center gap-[8px]">
+          <div className="flex items-center gap-[8px] relative">
             <Dropdown>
               <DropdownTrigger showArrow>
                 <div className="flex gap-[8px]">
@@ -87,7 +87,7 @@ const HeaderService = () => {
                   ))}
                 </div>
               </DropdownTrigger>
-              <div className="w-[203px] md:w-[312px] absolute right-0">
+              <div className="w-[203px] md:w-[312px] absolute md:left-[-100px]">
                 <DropdownContent>
                   <div className="p-[12px] md:p-[24px] grid grid-cols-4 gap-[10px]">
                     {reactions?.results?.map(reaction => (
