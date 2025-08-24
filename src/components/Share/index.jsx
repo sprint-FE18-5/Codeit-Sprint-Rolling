@@ -3,13 +3,13 @@ import useToast from "../../hooks/useToast";
 import { initKakao, shareRollingPaperByKakaoTalk } from "../../utils/kakao";
 import RegularButton from "../Button/RegularButton";
 import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "../Dropdown";
-const Share = ({ name, messages }) => {
+const Share = ({ name, messages, recipientId }) => {
   const { createToast } = useToast();
 
   const handleClickShareKaKaoTalk = () => {
     try {
       initKakao();
-      shareRollingPaperByKakaoTalk({ name, messages });
+      shareRollingPaperByKakaoTalk({ name, messages, recipientId });
     } catch (error) {
       createToast({ message: "롤링 페이퍼 공유에 실패하였습니다.", type: "error", bottom: 40, duration: 5000 });
     }
