@@ -23,13 +23,22 @@ const Picker = ({ setReactions, setTopReactions }) => {
   };
   return (
     <div className="relative">
-      <RegularButton variant="outlinedIcon" size={36} width={"88px"} onClick={() => setIsOpen(!isOpen)}>
+      <RegularButton
+        variant="outlinedIcon"
+        size={36}
+        width=""
+        isSquare
+        className="w-[36px] md:w-[88px] "
+        onClick={() => setIsOpen(!isOpen)}
+      >
         <div className="flex gap-1 whitespace-nowrap ">
           <img src={icEmoji} alt="이모지 아이콘" />
-          <span>추가</span>
+          <span className="hidden md:block">추가</span>
         </div>
       </RegularButton>
-      <div className="absolute top-11">{isOpen && <EmojiPicker height={400} onEmojiClick={handleClickEmoji} />}</div>
+      <div className="absolute top-11 right-[-80px] md:right-0">
+        {isOpen && <EmojiPicker height={400} width={320} onEmojiClick={handleClickEmoji} />}
+      </div>
     </div>
   );
 };

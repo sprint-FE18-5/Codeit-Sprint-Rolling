@@ -29,11 +29,12 @@ const Share = ({ name, messages }) => {
   return (
     <Dropdown>
       <DropdownTrigger as="div">
-        <RegularButton variant="outlinedIcon" size={36} width={"56px"}>
+        <RegularButton variant="outlinedIcon" size={36} width="" isSquare className="w-[36px] md:w-[56px]">
           <img src={icShare} alt="공유하기 버튼 이미지" />
         </RegularButton>
       </DropdownTrigger>
-      <div className="w-[140px]">
+
+      <div className="w-[140px] absolute right-0">
         <DropdownContent>
           <DropdownItem onClick={handleClickShareKaKaoTalk}>카카오톡 공유</DropdownItem>
           <DropdownItem onClick={handleClickShareURL}>URL 공유</DropdownItem>

@@ -61,7 +61,7 @@ const Card = ({
 
   return (
     <div
-      className="bg-white rounded-2xl shadow-sm min-w-[320px] md:min-w-0 p-6 h-71 flex flex-col gap-4 relative cursor-pointer transition-all font-pretendard"
+      className="bg-white rounded-2xl shadow-sm min-w-[300px] md:min-w-0 p-6 h-71 flex flex-col gap-4 relative cursor-pointer transition-all font-pretendard"
       onClick={handleClickCard} // 모달 연결
     >
       <div className="flex items-center gap-3">
@@ -97,7 +97,7 @@ const AddCard = ({ id }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl min-w-[320px] md:min-w-0 h-71 shadow-sm flex items-center justify-center transition-all">
+    <div className="bg-white rounded-2xl min-w-[300px] md:min-w-0 h-71 shadow-sm flex items-center justify-center transition-all">
       <CircleButton onClick={handleClick}>
         <img src={icPlus} alt="카드 추가" />
       </CircleButton>
