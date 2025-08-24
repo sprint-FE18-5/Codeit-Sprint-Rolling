@@ -47,7 +47,10 @@ const Card = ({
   onClick,
   cardID,
 }) => {
+  // 프로필 이미지 로드 실패 시 기본 이미지로 대체
   const [imgSrc, setImgSrc] = useState(imgProfile || defaultProfileImg);
+  // HTML 태그 제거
+  const stripTags = html => html.replace(/<[^>]*>?/g, "");
 
   const handleClickDelete = e => {
     e.stopPropagation();
@@ -81,7 +84,7 @@ const Card = ({
         {isDeleteMode && <DeleteButton onClick={handleClickDelete} />}
       </div>
       <div className="text-15 md:text-18 text-grayscale-600 pt-2 border-t border-grayscale-200 line-clamp-3">
-        {message}
+        {stripTags(message)}
       </div>
       <div className="font-12-regular text-grayscale-400 mt-auto">{date}</div>
     </div>
