@@ -6,6 +6,7 @@ import CardCarousel from "../../components/CardCarousel";
 import RegularButton from "../../components/Button/RegularButton";
 import useToast from "../../hooks/useToast";
 import COLOR_OPTION from "../../constants/COLOR_OPTION";
+import Page from "../Page";
 
 const SkeletonCardList = () => {
   return (
@@ -69,19 +70,21 @@ const ListPage = () => {
   const popularListItem = popularList.results || [];
 
   return (
-    <div className="list-page pt-[65px] px-[24px]">
-      <div className="list-popular lg:w-[1160px] mx-auto mt-[50px]">
-        <h2 className="font-24-bold mb-[16px]">인기 롤링 페이퍼 🔥</h2>
-        <CardCarousel>{isLoading ? <SkeletonCardList /> : CardItems(popularListItem)}</CardCarousel>
+    <Page title="롤링 페이퍼 - 목록 페이지">
+      <div className="list-page pt-[65px] px-[24px]">
+        <div className="list-popular lg:w-[1160px] mx-auto mt-[50px]">
+          <h2 className="font-24-bold mb-[16px]">인기 롤링 페이퍼 🔥</h2>
+          <CardCarousel>{isLoading ? <SkeletonCardList /> : CardItems(popularListItem)}</CardCarousel>
+        </div>
+        <div className="list-recent  lg:w-[1160px] mx-auto mt-[50px]">
+          <h2 className="font-24-bold mb-[16px]">최근에 만든 롤링 페이퍼 ⭐️</h2>
+          <CardCarousel>{isLoading ? <SkeletonCardList /> : CardItems(recentListItem)}</CardCarousel>
+        </div>
+        <RegularButton size={56} width="" className="w-full lg:w-[280px] mx-auto my-[64px]" onClick={handleBtnClick}>
+          나도 만들어보기
+        </RegularButton>
       </div>
-      <div className="list-recent  lg:w-[1160px] mx-auto mt-[50px]">
-        <h2 className="font-24-bold mb-[16px]">최근에 만든 롤링 페이퍼 ⭐️</h2>
-        <CardCarousel>{isLoading ? <SkeletonCardList /> : CardItems(recentListItem)}</CardCarousel>
-      </div>
-      <RegularButton size={56} width="" className="w-full lg:w-[280px] mx-auto my-[64px]" onClick={handleBtnClick}>
-        나도 만들어보기
-      </RegularButton>
-    </div>
+    </Page>
   );
 };
 

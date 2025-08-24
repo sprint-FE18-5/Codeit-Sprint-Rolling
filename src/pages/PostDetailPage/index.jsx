@@ -10,6 +10,7 @@ import Modal from "../../components/Modal/ModalPopup";
 import ModalContent from "../../components/Modal/ModalContent";
 import RegularButton from "../../components/Button/RegularButton";
 import { ToastContext } from "../../components/Toast/ToastProvider";
+import Page from "../Page";
 
 const MESSAGE_LIMIT = 6;
 
@@ -137,81 +138,83 @@ const PostDetailPage = () => {
   const bgStyle = getBgStyle(recipient);
 
   return (
-    <div className="min-h-screen pb-10 pt-48" style={bgStyle}>
-      {/* 배경이 이미지일때 오버레이 적용 */}
-      {isImageBg && <div className="fixed inset-0 min-h-screen w-full bg-black/50 z-0 pointer-events-none" />}
-      <div className="relative">
-        <div className="my-container pt-8">
-          <div className="md:flex md:justify-end md:mb-4">
-            <div className="fixed bottom-6 left-0 flex w-full px-4 justify-between md:static md:justify-end md:w-auto md:px-0 z-40">
-              {isDeleteMode && (
-                <div className="w-[48%] md:w-auto md:mr-2">
+    <Page title={`롤링 페이퍼 - ${recipient?.name}`}>
+      <div className="min-h-screen pb-10 pt-48" style={bgStyle}>
+        {/* 배경이 이미지일때 오버레이 적용 */}
+        {isImageBg && <div className="fixed inset-0 min-h-screen w-full bg-black/50 z-0 pointer-events-none" />}
+        <div className="relative">
+          <div className="my-container pt-8">
+            <div className="md:flex md:justify-end md:mb-4">
+              <div className="fixed bottom-6 left-0 flex w-full px-4 justify-between md:static md:justify-end md:w-auto md:px-0 z-40">
+                {isDeleteMode && (
+                  <div className="w-[48%] md:w-auto md:mr-2">
+                    <RegularButton
+                      width=""
+                      className="w-full h-[55px] md:w-[120px] md:h-[40px]"
+                      variant="primary"
+                      onClick={handleDeletePage}
+                    >
+                      페이지 삭제
+                    </RegularButton>
+                  </div>
+                )}
+
+                <div className={isDeleteMode ? "w-[48%] md:w-auto" : "w-full md:w-auto"}>
                   <RegularButton
                     width=""
                     className="w-full h-[55px] md:w-[120px] md:h-[40px]"
                     variant="primary"
-                    onClick={handleDeletePage}
+                    onClick={() => setIsDeleteMode(v => !v)}
                   >
-                    페이지 삭제
+                    {isDeleteMode ? "취소" : "삭제하기"}
                   </RegularButton>
                 </div>
-              )}
-
-              <div className={isDeleteMode ? "w-[48%] md:w-auto" : "w-full md:w-auto"}>
-                <RegularButton
-                  width=""
-                  className="w-full h-[55px] md:w-[120px] md:h-[40px]"
-                  variant="primary"
-                  onClick={() => setIsDeleteMode(v => !v)}
-                >
-                  {isDeleteMode ? "취소" : "삭제하기"}
-                </RegularButton>
               </div>
             </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* 삭제모드 아닐 때 AddCard + 메시지 카드, 삭제모드일 때 메시지 카드만 */}
+              {!isDeleteMode && <AddCard id={recipientId} />}
+              {messages.map(msg => (
+                <Card
+                  key={msg.id}
+                  imgProfile={msg.profileImageURL}
+                  name={msg.sender}
+                  badgeText={msg.relationship}
+                  message={msg.content}
+                  date={msg.createdAt?.slice(0, 10)}
+                  isDeleteMode={isDeleteMode}
+                  onDelete={handleDeleteCard}
+                  onClick={handleClickCard}
+                  cardID={msg.id}
+                />
+              ))}
+            </div>
+            {hasMore && <div className="h-10" />}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* 삭제모드 아닐 때 AddCard + 메시지 카드, 삭제모드일 때 메시지 카드만 */}
-            {!isDeleteMode && <AddCard id={recipientId} />}
-            {messages.map(msg => (
-              <Card
-                key={msg.id}
-                imgProfile={msg.profileImageURL}
-                name={msg.sender}
-                badgeText={msg.relationship}
-                message={msg.content}
-                date={msg.createdAt?.slice(0, 10)}
-                isDeleteMode={isDeleteMode}
-                onDelete={handleDeleteCard}
-                onClick={handleClickCard}
-                cardID={msg.id}
+          <Modal
+            isVisible={modalOpen}
+            onClose={() => {
+              setModalOpen(false);
+              setModalData(null);
+            }}
+          >
+            {modalData && (
+              <ModalContent
+                profileImg={modalData.profileImageURL}
+                name={modalData.sender}
+                relationship={modalData.relationship}
+                message={modalData.content}
+                date={modalData.createdAt?.slice(0, 10)}
+                onClose={() => {
+                  setModalOpen(false);
+                  setModalData(null);
+                }}
               />
-            ))}
-          </div>
-          {hasMore && <div className="h-10" />}
+            )}
+          </Modal>
         </div>
-        <Modal
-          isVisible={modalOpen}
-          onClose={() => {
-            setModalOpen(false);
-            setModalData(null);
-          }}
-        >
-          {modalData && (
-            <ModalContent
-              profileImg={modalData.profileImageURL}
-              name={modalData.sender}
-              relationship={modalData.relationship}
-              message={modalData.content}
-              date={modalData.createdAt?.slice(0, 10)}
-              onClose={() => {
-                setModalOpen(false);
-                setModalData(null);
-              }}
-            />
-          )}
-        </Modal>
       </div>
-    </div>
+    </Page>
   );
 };
 
