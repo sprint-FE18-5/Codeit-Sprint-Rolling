@@ -73,10 +73,12 @@
 ## 📂 프로젝트 구조
 ```
 📂 src
+ ┣ 📂 api
+ ┣ 📂 assets
  ┣ 📂 components
- ┣ 📂 pages
+ ┣ 📂 constants
  ┣ 📂 hooks
- ┣ 📂 store
+ ┣ 📂 pages
  ┣ 📂 utils
  ┗ main.jsx
 ```
