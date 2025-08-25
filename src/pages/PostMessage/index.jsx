@@ -122,7 +122,7 @@ const PostMessagePage = () => {
   return (
     <Page title="롤링 페이퍼 - 메시지 보내기">
       <FormLayout onSubmit={handleSubmitMessage}>
-        <FormField label="From." htmlFor="name">
+        <FormField label={`From.${form.name}`} htmlFor="name">
           <Input
             type="text"
             id="name"
